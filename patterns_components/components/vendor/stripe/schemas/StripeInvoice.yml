@@ -1,0 +1,138 @@
+name: StripeInvoice
+description: Stripe raw Invoice object
+unique_on:
+  - id
+field_roles:
+  created_ordering: created
+immutable: False
+fields:
+  account_country:
+    type: Text
+  account_name:
+    type: Text
+  account_tax_ids:
+    type: Text
+  amount_due:
+    type: Integer
+  amount_paid:
+    type: Integer
+  amount_remaining:
+    type: Integer
+  application_fee_amount:
+    type: Text
+  attempt_count:
+    type: Integer
+  attempted:
+    type: Boolean
+  auto_advance:
+    type: Boolean
+  billing_reason:
+    type: Text
+  charge:
+    type: Text
+  collection_method:
+    type: Text
+  created:
+    type: Integer
+  currency:
+    type: Text
+  custom_fields:
+    type: Text
+  customer:
+    type: Text
+  customer_address:
+    type: Text
+  customer_email:
+    type: Text
+  customer_name:
+    type: Text
+  customer_phone:
+    type: Text
+  customer_shipping:
+    type: Text
+  customer_tax_exempt:
+    type: Text
+  customer_tax_ids:
+    type: Json
+  default_payment_method:
+    type: Text
+  default_source:
+    type: Text
+  default_tax_rates:
+    type: Json
+  description:
+    type: Text
+  discount:
+    type: Text
+  discounts:
+    type: Json
+  due_date:
+    type: Text
+  ending_balance:
+    type: Integer
+  footer:
+    type: Text
+  hosted_invoice_url:
+    type: Text
+  id:
+    type: Text
+  invoice_pdf:
+    type: Text
+  last_finalization_error:
+    type: Text
+  lines:
+    type: Json
+  livemode:
+    type: Boolean
+  metadata:
+    type: Json
+  next_payment_attempt:
+    type: Text
+  number:
+    type: Text
+  object:
+    type: Text
+  on_behalf_of:
+    type: Text
+  paid:
+    type: Boolean
+  payment_intent:
+    type: Text
+  payment_settings:
+    type: Json
+  period_end:
+    type: Integer
+  period_start:
+    type: Integer
+  post_payment_credit_notes_amount:
+    type: Integer
+  pre_payment_credit_notes_amount:
+    type: Integer
+  receipt_number:
+    type: Text
+  starting_balance:
+    type: Integer
+  statement_descriptor:
+    type: Text
+  status:
+    type: Text
+  status_transitions:
+    type: Json
+  subscription:
+    type: Text
+  subtotal:
+    type: Integer
+  tax:
+    type: Text
+  tax_percent:
+    type: Text
+  total:
+    type: Integer
+  total_discount_amounts:
+    type: Json
+  total_tax_amounts:
+    type: Json
+  transfer_data:
+    type: Text
+  webhooks_delivered_at:
+    type: Integer

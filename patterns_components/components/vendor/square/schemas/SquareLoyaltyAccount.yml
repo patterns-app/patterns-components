@@ -1,0 +1,25 @@
+name: SquareLoyaltyAccount
+description: Square Loyalty Account
+unique_on:
+  - id
+immutable: False
+field_roles:
+  created_ordering: created_at
+  updated_ordering: updated_at
+fields:
+  id:
+    type: Text
+  mapping:
+    type: Json
+  program_id:
+    type: Text
+  balance:
+    type: Integer
+  lifetime_points:
+    type: Integer
+  customer_id:
+    type: Text
+  created_at:
+    type: DateTime(timezone=False)
+  updated_at:
+    type: DateTime(timezone=False)

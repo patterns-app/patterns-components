@@ -1,0 +1,28 @@
+name: StripeSubscriptionItem
+description: Stripe raw Subscription Item object
+unique_on:
+  - id
+field_roles:
+  created_ordering: created
+immutable: False
+fields:
+  billing_thresholds:
+    type: Text
+  created:
+    type: Integer
+  id:
+    type: Text
+  metadata:
+    type: Json
+  object:
+    type: Text
+  plan:
+    type: Json
+  price:
+    type: Json
+  quantity:
+    type: Integer
+  subscription:
+    type: Text
+  tax_rates:
+    type: Json

@@ -1,0 +1,62 @@
+name: SquareCatalogObject
+description: Square Catalog object
+unique_on:
+  - id
+immutable: False
+field_roles:
+  updated_ordering: updated_at
+fields:
+  type:
+    type: Text
+  id:
+    type: Text
+  updated_at:
+    type: DateTime(timezone=False)
+  version:
+    type: Integer
+  is_deleted:
+    type: Boolean
+  present_at_all_locations:
+    type: Boolean
+  absent_at_location_ids:
+    type: Json
+  present_at_location_ids:
+    type: Json
+  image_id:
+    type: Text
+  item_data:
+    type: Json
+  category_data:
+    type: Json
+  discount_data:
+    type: Json
+  image_data:
+    type: Json
+  custom_attribute_definition_data:
+    type: Json
+  custom_attribute_values:
+    type: Json
+  item_option_data:
+    type: Json
+  item_option_value_data:
+    type: Json
+  item_variation_data:
+    type: Json
+  measurement_unit_data:
+    type: Json
+  modifier_data:
+    type: Json
+  tax_data:
+    type: Json
+  subscription_plan_data:
+    type: Json
+  time_period_data:
+    type: Json
+  pricing_rule_data:
+    type: Json
+  product_set_data:
+    type: Json
+  modifier_list_data:
+    type: Json
+  quick_amounts_settings_data:
+    type: Json

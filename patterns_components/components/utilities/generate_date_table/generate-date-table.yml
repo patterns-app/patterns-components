@@ -1,0 +1,21 @@
+title: Generate Date Table
+slug: generate-date-table
+description_file: readme.md
+version: 0.0.7
+tags:
+- beta
+- utility
+- etl
+- source
+exposes:
+  outputs:
+  - dates
+  parameters:
+  - start_date
+  - end_date
+  schemas:
+  - DateTable
+functions:
+- node_file: generate_date_table.py
+schemas:
+- schema_file: schemas/DateTable.yml

@@ -1,0 +1,34 @@
+title: Replicate Square Tables
+slug: square-replicate-all
+description_file: docs/square-replication.md
+icon: square.svg
+tags:
+- square
+- finance
+- payments
+- ecommerce
+- source
+version: 2.0.0
+exposes:
+  outputs:
+  - square_payments
+  - square_orders
+  - square_customers
+  - square_catalog_objects
+  - square_loyalty_accounts
+  parameters:
+  - connection
+  schemas:
+  - SquarePayment
+  - SquareOrder
+  - SquareCustomer
+  - SquareCatalogObject
+  - SquareLoyaltyAccount
+schemas:
+- schema_file: schemas/SquarePayment.yml
+- schema_file: schemas/SquareOrder.yml
+- schema_file: schemas/SquareCustomer.yml
+- schema_file: schemas/SquareCatalogObject.yml
+- schema_file: schemas/SquareLoyaltyAccount.yml
+functions:
+- node_file: functions/replicate_all_tables.py
