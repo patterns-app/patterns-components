@@ -2,12 +2,12 @@ import requests_mock
 
 from patterns_components.tests.mock_api import MockOutputTable, MockState
 
-from patterns_components.components.vendor.square.square_replication.base import (
+from patterns_components.components.vendor.square.replication.base import (
     make_object_url,
     make_state_key,
     cursor_state_key,
 )
-from patterns_components.components.vendor.square.square_replication.importers import (
+from patterns_components.components.vendor.square.replication.importers import (
     import_square_orders,
     import_square_catalog_objects,
 )

@@ -5,7 +5,7 @@ from dcp.utils.common import utcnow
 
 from patterns_components.tests.mock_api import MockOutputTable, MockState
 
-from patterns_components.components.vendor.stripe.stripe_replication.base import (
+from patterns_components.components.vendor.stripe.replication.base import (
     make_object_url,
     import_stripe_objects,
     current_starting_after_state_key,
