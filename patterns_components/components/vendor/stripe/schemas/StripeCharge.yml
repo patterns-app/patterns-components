@@ -1,0 +1,100 @@
+name: StripeCharge
+description: Stripe charge object
+unique_on:
+  - id
+field_roles:
+  created_ordering: created
+immutable: false
+fields:
+  amount:
+    type: Integer
+  amount_captured:
+    type: Integer
+  amount_refunded:
+    type: Integer
+  application:
+    type: Text
+  application_fee:
+    type: Text
+  application_fee_amount:
+    type: Text
+  balance_transaction:
+    type: Text
+  billing_details:
+    type: Json
+  calculated_statement_descriptor:
+    type: Text
+  captured:
+    type: Boolean
+  created:
+    type: Integer
+  currency:
+    type: Text
+  customer:
+    type: Text
+  description:
+    type: Text
+  destination:
+    type: Text
+  dispute:
+    type: Text
+  disputed:
+    type: Boolean
+  failure_code:
+    type: Text
+  failure_message:
+    type: Text
+  fraud_details:
+    type: Json
+  id:
+    type: Text
+  invoice:
+    type: Text
+  livemode:
+    type: Boolean
+  metadata:
+    type: Json
+  object:
+    type: Text
+  on_behalf_of:
+    type: Text
+  order:
+    type: Text
+  outcome:
+    type: Text
+  paid:
+    type: Boolean
+  payment_intent:
+    type: Text
+  payment_method:
+    type: Text
+  payment_method_details:
+    type: Json
+  receipt_email:
+    type: Text
+  receipt_number:
+    type: Text
+  receipt_url:
+    type: Text
+  refunded:
+    type: Boolean
+  refunds:
+    type: Json
+  review:
+    type: Text
+  shipping:
+    type: Text
+  source:
+    type: Json
+  source_transfer:
+    type: Text
+  statement_descriptor:
+    type: Text
+  statement_descriptor_suffix:
+    type: Text
+  status:
+    type: Text
+  transfer_data:
+    type: Text
+  transfer_group:
+    type: Text

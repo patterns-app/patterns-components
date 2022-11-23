@@ -1,0 +1,37 @@
+title: Replicate Stripe Tables
+slug: stripe-replicate-all
+icon: stripe.svg
+description_file: docs/stripe-replication.md
+tags:
+- beta
+- stripe
+- ecommerce
+- payments
+- finance
+- source
+version: 2.0.4
+exposes:
+  outputs:
+  - stripe_charges
+  - stripe_invoices
+  - stripe_refunds
+  - stripe_subscriptions
+  - stripe_subscription_items
+  parameters:
+  - api_key
+  - connection
+  - start_date
+  schemas:
+  - StripeCharge
+  - StripeInvoice
+  - StripeRefund
+  - StripeSubscription
+  - StripeSubscriptionItem
+schemas:
+- schema_file: schemas/StripeCharge.yml
+- schema_file: schemas/StripeInvoice.yml
+- schema_file: schemas/StripeRefund.yml
+- schema_file: schemas/StripeSubscription.yml
+- schema_file: schemas/StripeSubscriptionItem.yml
+functions:
+- node_file: functions/replicate_all_tables.py

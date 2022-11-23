@@ -1,0 +1,36 @@
+name: StripeRefund
+description: Stripe refund object
+unique_on:
+  - id
+field_roles:
+  created_ordering: created
+immutable: False
+fields:
+  amount:
+    type: Integer
+  balance_transaction:
+    type: Text
+  charge:
+    type: Text
+  created:
+    type: Integer
+  currency:
+    type: Text
+  id:
+    type: Text
+  metadata:
+    type: Json
+  object:
+    type: Text
+  payment_intent:
+    type: Text
+  reason:
+    type: Text
+  receipt_number:
+    type: Text
+  source_transfer_reversal:
+    type: Text
+  status:
+    type: Text
+  transfer_reversal:
+    type: Text

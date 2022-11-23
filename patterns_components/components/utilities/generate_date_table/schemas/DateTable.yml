@@ -1,0 +1,42 @@
+name: DateTable
+description: Dates and useful attributes on them
+unique_on:
+  - date
+field_roles:
+  created_ordering: date
+immutable: true
+fields:
+  date:
+    type: Date
+  year:
+    type: Integer
+  month:
+    type: Integer
+  day:
+    type: Integer
+  day_of_week:
+    type: Integer
+  day_of_week_name:
+    type: Text
+  week:
+    type: Integer
+  quarter:
+    type: Integer
+  year_half:
+    type: Integer
+  is_business_day:
+    type: Boolean
+  is_month_start:
+    type: Boolean
+  is_month_end:
+    type: Boolean
+  is_quarter_start:
+    type: Boolean
+  is_quarter_end:
+    type: Boolean
+  is_year_start:
+    type: Boolean
+  is_year_end:
+    type: Boolean
+  is_leap_year:
+    type: Boolean

@@ -1,0 +1,39 @@
+name: SquareCustomer
+description: Square Customer
+unique_on:
+  - id
+immutable: False
+field_roles:
+  created_ordering: created_at
+  updated_ordering: updated_at
+fields:
+  id:
+    type: Text
+  created_at:
+    type: DateTime
+  updated_at:
+    type: DateTime
+  given_name:
+    type: Text
+  family_name:
+    type: Text
+  email_address:
+    type: Text
+  address:
+    type: Json
+  phone_number:
+    type: Text
+  note:
+    type: Text
+  reference_id:
+    type: Text
+  preferences:
+    type: Json
+  creation_source:
+    type: Text
+  group_ids:
+    type: Json
+  segment_ids:
+    type: Json
+  version:
+    type: Integer

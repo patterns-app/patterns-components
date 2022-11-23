@@ -1,0 +1,79 @@
+name: SquarePayment
+description: Square Payment object
+unique_on:
+  - id
+immutable: False
+field_roles:
+  created_ordering: created_at
+  updated_ordering: updated_at
+fields:
+  id:
+    type: Text
+  created_at:
+    type: DateTime
+  updated_at:
+    type: DateTime
+  amount_money:
+    type: Json
+  status:
+    type: Text
+  source_type:
+    type: Text
+  card_details:
+    type: Json
+  cash_details:
+    type: Json
+  bank_account_details:
+    type: Json
+  external_details:
+    type: Json
+  location_id:
+    type: Text
+  order_id:
+    type: Text
+  reference_id:
+    type: Text
+  employee_id:
+    type: Text
+  customer_id:
+    type: Text
+  refund_ids:
+    type: Json
+  risk_evaluation:
+    type: Json
+  processing_fee:
+    type: Json
+  buyer_email_address:
+    type: Text
+  billing_address:
+    type: Json
+  shipping_address:
+    type: Json
+  note:
+    type: Text
+  total_money:
+    type: Json
+  approved_money:
+    type: Json
+  refunded_money:
+    type: Json
+  app_fee_money:
+    type: Json
+  tip_money:
+    type: Json
+  receipt_number:
+    type: Text
+  receipt_url:
+    type: Text
+  delay_action:
+    type: Text
+  delayed_until:
+    type: DateTime
+  delay_duration:
+    type: Text
+  version_token:
+    type: Text
+  capabilities:
+    type: Json
+  statement_description_identifier:
+    type: Text

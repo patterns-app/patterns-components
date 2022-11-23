@@ -1,0 +1,67 @@
+name: SquareOrder
+description: Square Order
+unique_on:
+  - id
+immutable: False
+field_roles:
+  created_ordering: created_at
+  updated_ordering: updated_at
+fields:
+  id:
+    type: Text
+  location_id:
+    type: Text
+  reference_id:
+    type: Text
+  customer_id:
+    type: Text
+  line_items:
+    type: Json
+  source:
+    type: Json
+  taxes:
+    type: Json
+  discounts:
+    type: Json
+  service_charges:
+    type: Json
+  fulfillments:
+    type: Json
+  returns:
+    type: Json
+  refunds:
+    type: Json
+  rewards:
+    type: Json
+  pricing_options:
+    type: Json
+  created_at:
+    type: DateTime(timezone=False)
+  updated_at:
+    type: DateTime(timezone=False)
+  state:
+    type: Text
+  total_tax_money:
+    type: Json
+  total_discount_money:
+    type: Json
+  total_tip_money:
+    type: Json
+  total_money:
+    type: Json
+  closed_at:
+    type: DateTime(timezone=False)
+  tenders:
+    type: Json
+  total_service_charge_money:
+    type: Json
+  return_amounts:
+    type: Json
+  net_amounts:
+    type: Json
+  metadata:
+    type: Json
+  rounding_adjustment:
+    type: Json
+  version:
+    type: Integer

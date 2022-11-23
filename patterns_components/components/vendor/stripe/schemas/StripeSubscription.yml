@@ -1,0 +1,82 @@
+name: StripeSubscription
+description: Stripe raw Subscription object
+unique_on:
+  - id
+immutable: False
+field_roles:
+  created_ordering: created
+fields:
+  id:
+    type: Text
+  application_fee_percent:
+    type: Text
+  billing_cycle_anchor:
+    type: Integer
+  billing_thresholds:
+    type: Text
+  cancel_at:
+    type: Text
+  cancel_at_period_end:
+    type: Boolean
+  canceled_at:
+    type: Text
+  collection_method:
+    type: Text
+  created:
+    type: Integer
+  current_period_end:
+    type: Integer
+  current_period_start:
+    type: Integer
+  customer:
+    type: Text
+  days_until_due:
+    type: Text
+  default_payment_method:
+    type: Text
+  default_source:
+    type: Text
+  default_tax_rates:
+    type: Json
+  discount:
+    type: Text
+  ended_at:
+    type: Text
+  items:
+    type: Json
+  latest_invoice:
+    type: Text
+  livemode:
+    type: Boolean
+  metadata:
+    type: Json
+  next_pending_invoice_item_invoice:
+    type: Text
+  object:
+    type: Text
+  pause_collection:
+    type: Text
+  pending_invoice_item_interval:
+    type: Text
+  pending_setup_intent:
+    type: Text
+  pending_update:
+    type: Text
+  plan:
+    type: Json
+  quantity:
+    type: Integer
+  schedule:
+    type: Text
+  start_date:
+    type: Integer
+  status:
+    type: Text
+  tax_percent:
+    type: Text
+  transfer_data:
+    type: Text
+  trial_end:
+    type: Text
+  trial_start:
+    type: Text
