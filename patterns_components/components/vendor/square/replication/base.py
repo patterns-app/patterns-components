@@ -6,15 +6,13 @@ from datetime import datetime
 from patterns import Stream, State
 from requests import Request
 
-from ..shared_v0.importer_helpers import (
+from patterns_components.helpers.replication import (
     use_extract_records_from_field,
     use_header_auth,
     use_update_state_latest_timestamp,
     DEFAULT_STATE_KEY,
     handle_retry_headers,
     use_handle_retry_backoff,
-)
-from ..shared_v0.stateful_importer import (
     ImporterContext,
     import_records,
     ImporterContextFunction,

@@ -4,7 +4,7 @@ from datetime import datetime
 
 from patterns import Table, Parameter, State, Connection
 
-from ..shared_v0.importer_helpers import full_replication_manager
+from patterns_components.helpers.replication import full_replication_manager
 from .base import (
     import_stripe_objects,
     import_stripe_subscriptions,

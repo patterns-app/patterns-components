@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from patterns import Table, Parameter, State, Connection
 
-from ..shared_v0.importer_helpers import full_replication_manager
+from patterns_components.helpers.replication import full_replication_manager
 from .importers import (
     import_square_payments,
     import_square_orders,
