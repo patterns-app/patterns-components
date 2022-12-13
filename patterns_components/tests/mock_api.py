@@ -1,6 +1,11 @@
 from __future__ import annotations
 
+import contextlib
+import importlib
+import importlib.util
+import sys
 from dataclasses import dataclass
+from types import ModuleType
 from typing import Iterator
 
 from commonmodel import Schema
@@ -210,3 +215,67 @@ class MockState:
 
     def get_datetime(self, k, d=None):
         return ensure_datetime(self.get_value(k, d))
+
+
+@dataclass
+class ProtocolObjects:
+    function_kwargs: dict
+
+    def get_state(self, *args, **kwargs):
+        return self.function_kwargs["state"]
+
+    def get_by_name(self, name: str, *args, **kwargs):
+        return self.function_kwargs[name]
+
+
+@contextlib.contextmanager
+def patch_patterns(protocol_objects: ProtocolObjects) -> ModuleType:
+    import patterns
+
+    originals = {}
+    for cls in [
+        "State",
+        "Parameter",
+        "Table",
+        "Stream",
+    ]:
+        if hasattr(patterns, cls):
+            originals[cls] = getattr(patterns, cls)
+
+    setattr(patterns, "State", protocol_objects.get_state)
+
+    for cls in [
+        "Parameter",
+        "Table",
+        "Stream",
+    ]:
+        setattr(patterns, cls, protocol_objects.get_by_name)
+
+    try:
+        yield patterns
+    finally:
+        for name, obj in originals.items():
+            setattr(patterns, name, obj)
+
+
+def _import_module(module_name: str, pth: str) -> ModuleType:
+    # Required to import dynamically with relative imports
+    spec = importlib.util.spec_from_file_location(module_name, pth)
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = mod
+    spec.loader.exec_module(mod)
+    return mod
+
+
+@dataclass
+class PythonScriptCallable:
+    module_path: str
+    node_file_full_path: str
+
+    def __call__(self, **function_kwargs):
+        self.function_kwargs = function_kwargs
+        with patch_patterns(ProtocolObjects(function_kwargs)):
+            self.import_and_run()
+
+    def import_and_run(self):
+        _import_module(self.module_path, str(self.node_file_full_path))
