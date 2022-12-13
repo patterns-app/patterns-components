@@ -12,7 +12,7 @@ from .base import (
     square_update_request_with_auth,
     make_state_key,
 )
-from ..shared_v0.stateful_importer import import_records
+from patterns_components.helpers.replication import import_records
 
 
 def get_all_square_locations(state: State, access_token: str) -> list[dict]:

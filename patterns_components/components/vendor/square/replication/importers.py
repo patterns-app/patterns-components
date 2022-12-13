@@ -14,7 +14,7 @@ from .base import (
 from .locations import (
     iterate_square_location_configs,
 )
-from ..shared_v0.stateful_importer import (
+from patterns_components.helpers.replication import (
     ImporterContext,
     import_records,
     ImporterContextFunction,

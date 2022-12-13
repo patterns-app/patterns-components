@@ -8,13 +8,10 @@ from dcp.utils.common import utcnow
 from patterns import Stream, State, Table
 from requests import Request
 
-from ..shared_v0.stateful_importer import (
+from patterns_components.helpers.replication import (
     ImporterContext,
     import_records,
     ImporterContextFunction,
-)
-
-from ..shared_v0.importer_helpers import (
     use_basic_auth,
     use_extract_records_from_field,
     use_update_state_with_latest_value,
