@@ -76,7 +76,7 @@ class MockIoBase:
 
     @property
     def exists(self) -> bool:
-        return self.table.exists
+        return bool(self._records)
 
     @property
     def record_count(self) -> int | None:
@@ -129,8 +129,9 @@ class MockTableStream(MockIoBase):
         super().__init__(records, **kwargs)
         self._write(records, replace=True)
         self._record_index = 0
+        self._last_saved_index = 0
 
-    def consume_records(self, with_metadata=False) -> Iterator[dict]:
+    def consume_records(self) -> Iterator[dict]:
         if not self.has_active_version() or not self._records:
             return
 
@@ -139,17 +140,32 @@ class MockTableStream(MockIoBase):
                 return
             r = self._records[self._record_index]
             self._record_index += 1
-            if with_metadata:
-                yield r
-                # yield {"timestamp": utcnow(), "record": r}
-            else:
-                yield r["record"]
+            yield r
 
     def __iter__(self) -> Iterator[dict]:
         yield from self.consume_records()
 
+    @contextlib.contextmanager
+    def consume_with_rollback(self) -> Iterator[Iterator[dict]]:
+        def _try():
+            for r in self.consume_records():
+                yield r
+                self.checkpoint()
+
+        try:
+            yield _try()
+        except Exception as e:
+            self.rollback()
+            raise e
+
     def rollback(self):
-        pass
+        self._record_index = self._last_saved_index
+
+    def checkpoint(self):
+        self.flush()
+
+    def flush(self):
+        self._last_saved_index = self._record_index
 
     def rewind(self):
         self._record_index = 0
@@ -160,6 +176,8 @@ class MockOutputTable(MockIoBase):
         super().__init__(None, name=name, **kwargs)
 
     def _write_any(self, records, replace=False):
+        if isinstance(records, dict):
+            records = [records]
         if isinstance(records, list):
             self._write_records(records, replace)
         else:
