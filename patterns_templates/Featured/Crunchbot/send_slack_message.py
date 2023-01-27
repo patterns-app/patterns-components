@@ -18,7 +18,6 @@ state.set_value("latest_streamed_dshjjq6i_patterns_id", "01gq5tn7d1gkenz9dwqfapd
 def format_result(res):
     if res and isinstance(res, list):
         return tabulate(res, headers="keys")
-        #return "\n".join(" ".join(f"{k}: {v}" for k,v in r.items()) for r in res)
     return res
 
 
