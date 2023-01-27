@@ -1,14 +1,5 @@
-# Send Slack Message
+# Crunchbot - Replacing a SQL analyst with 26 recursive GPT prompts
 
-Starter node for sending each record in a table as a Slack message. Connected
-`messages` table, the fields of which can be used in the message template.
+The Crunchbot app takes in a free-form analytics query via Slack (e.g "How many seed rounds happened in 2022?") and uses GPT-3 to generate SQL and return the answer via Slack. See blog post for details: https://www.patterns.app/blog/2023/01/18/crunchbot-sql-analyst-gpt/
 
-### Inputs
-- `messages` - Messages table, each record of which will be sent as a Slack message
-
-### Parameters
-
-- `slack_webhook_url` - A slack "Incoming Webhook", see here for instructions: https://api.slack.com/messaging/webhooks
-- `message_template` - Template for slack message, for example `'Hello {name}, it is {time}'`, where 
-   `name` and `time` are fields in the record. Slack supports a simplified **markdown** syntax.
-   
+You'll need an OpenAI API key and a Slack bot token authed against your organization.
