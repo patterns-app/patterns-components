@@ -53,13 +53,6 @@ functions:
     output_table: funding_rounds
   title: Filter funding rounds
 - display:
-    x: 4
-    y: 0
-  id: bd4egip5
-  node_file: sql.sql
-  outputs:
-    output_table: output_table2
-- display:
     style: form
     width: 3
     x: -3
@@ -203,11 +196,6 @@ stores:
     y: 2
   id: vpwgbr3k
   table: funding_rounds
-- display:
-    x: 5
-    y: 0
-  id: xvg3yjaa
-  table: output_table2
 - display:
     x: 0
     y: 1
