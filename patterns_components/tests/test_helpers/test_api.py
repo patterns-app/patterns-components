@@ -28,6 +28,8 @@ def test_parse_headers():
     assert headers.seconds_until_reset < 1800000000
     headers = parse_rate_limit_headers({"retry-after": "2030-01-01 00:00:00Z"})
     assert 0 < headers.retry_after_seconds < 1800000000
+    headers = parse_rate_limit_headers({"retry-after": "2030-01-01 00:00:00"})
+    assert 0 < headers.retry_after_seconds < 1800000000
 
 
 test_url = "http://example.com"

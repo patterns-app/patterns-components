@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import time
 from dataclasses import dataclass
-from datetime import datetime, date
+from datetime import datetime, date, timezone
 from typing import Any, Callable
 
 from dateutil import parser
@@ -26,6 +26,8 @@ def _parse_header_future_time_seconds(v: str | int | float) -> int | float | Non
         pass
     try:
         dt = parser.parse(v)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
         seconds = max((dt - utcnow()).total_seconds(), 0)
         return seconds
     except ParserError:
