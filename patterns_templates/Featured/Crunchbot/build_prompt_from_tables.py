@@ -54,8 +54,6 @@ Comment the query with your logic."""
     return prompt
 
 
-# prompt = build_prompt(question)
-# table.append({"prompt": prompt, "question": question, "slack_channel": "kvh-test"})
 
 
 for question in questions.as_stream():
