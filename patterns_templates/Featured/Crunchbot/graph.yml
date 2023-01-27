@@ -100,7 +100,7 @@ functions:
   outputs:
     questions: questions
   title: Format mention
-- description_file: readme_2.md
+- description_file: readme-gmail.md
   display:
     x: 7
     y: 5
@@ -209,3 +209,4 @@ stores:
   storage: Default_ro
   table: crunchbase_funding_rounds
 title: Crunchbase SQL Bot
+description_file: readme.md
