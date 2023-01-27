@@ -18,7 +18,6 @@ funding_rounds = Table("funding_rounds")
 
 analytical_tables = [orgs, investments, funding_rounds]
 
-#question = Parameter("question", default="How many seed round deals happened in 2022?")
 
 
 def table_info(table):
