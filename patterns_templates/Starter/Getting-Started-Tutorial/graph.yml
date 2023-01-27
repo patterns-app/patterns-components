@@ -1,0 +1,16 @@
+functions:
+- display:
+    x: 0
+    y: 0
+  id: ofrsqawf
+  node_file: ingest_comments_from_hacker_news.py
+  outputs:
+    comments: comments
+  title: Ingest comments from Hacker News
+stores:
+- display:
+    x: 1
+    y: 0
+  id: y4flklso
+  table: comments
+title: Getting Started Tutorial

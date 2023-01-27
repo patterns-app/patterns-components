@@ -1,0 +1,27 @@
+{
+  "Featured and Starter": {
+    "StableBot": "A slack bot that uses Stable Diffusion to create images from text prompts",
+    "Slack-Summarizer": "A proof-of-concept GPT-3 slack bot that summarizes Slack channels in response to Slack @ mentions",
+    "Fine-tune Q&A bot": "",
+    "CrunchBot": "",
+    "Salesforce Classifier": "Use Patterns to fetch data from Salesforce, fine-tune an LLM with Cohere and finally classify Salesforce and upload those classifications back to Salesforce",
+    "RedditBot": "",
+    "Discord Search Bot": "",
+    "HN Classifier": "This app classifies HackerNews story titles to determine their category and provide metrics on posting frequency and popularity"
+  },
+  "Featured": {
+  },
+  "General": {
+    "Eng Advice GPT3 Slack Bot": "A proof-of-concept GPT-3 slack bot that gives (sometimes questionable) engineering advice in response to Slack @ mention",
+    "Sales Lead Email Generator": "Use GPT3 to generate an email that a business might send to a prospective customer",
+    "Asana Reviews Demo": "",
+    "Peloton Dashboard": "Template app to track your Peloton workout stats and plots them",
+    "stock-market-bot": "Build a bot that charts stock market data and sends alerts to Slack alerts when conditions are met"
+  },
+  "Starter": {
+    "Blank-App": "Looking for a blank slate? This is the template for you",
+    "Getting-Started-Tutorial": "Learn some Patterns basics with this simple walk-through tutorial",
+    "Blank-Python-App": "Simple app for starting with Python development",
+    "Blank-Webhook-App": "Simple app for connecting a webhook"
+  }
+}
