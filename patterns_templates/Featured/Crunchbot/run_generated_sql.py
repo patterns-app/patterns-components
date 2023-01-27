@@ -30,7 +30,6 @@ api_key = connection.get("api_key")
 state = State()
 
 
-#state.set_value("latest_streamed_kfh2w4ts_patterns_id", "01gq3a3m7jx451bn7f5g87m3ee")
 
 
 @dataclass
