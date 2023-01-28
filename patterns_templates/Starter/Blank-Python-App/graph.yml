@@ -1,0 +1,16 @@
+description_file: readme.md
+functions:
+- display:
+    x: -1
+    y: 0
+  id: lbvijxgx
+  node_file: python.py
+  outputs:
+    table: table
+stores:
+- display:
+    x: 0
+    y: 0
+  id: gdde4inq
+  table: table
+title: Blank Python App
