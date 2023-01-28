@@ -178,3 +178,12 @@ def clean_request_params(params: dict[str, Any], date_format="%F %T") -> dict[st
             continue
         cleaned[k] = v
     return cleaned
+
+
+def raise_for_status_and_log(resp: Response):
+    if not resp.ok:
+        if "application/json" in resp.headers.get("Content-Type", ""):
+            print(resp.json())
+        else:
+            print(resp.content)
+        resp.raise_for_status()

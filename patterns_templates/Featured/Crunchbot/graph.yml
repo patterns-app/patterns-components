@@ -1,0 +1,212 @@
+dashboards:
+- id: 6v2w6iil
+  title: asdf
+functions:
+- display:
+    x: -1
+    y: 3
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/slack.svg
+  id: 3ilxlq5x
+  inputs:
+    questions: mentions
+  node_file: ack_message.py
+  parameter_values:
+    slackbot_connection: ${{ connection.slackbot_2 }}
+  title: Ack message
+- display:
+    x: 3
+    y: 4
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/openai.svg
+  id: 5av4xpu2
+  node_file: complete_w_gpt3.py
+  outputs:
+    completions: completions
+  parameter_values:
+    connection: ${{ connection.openai_2 }}
+  title: Complete w GPT-3
+- display:
+    x: 1
+    y: 0
+  id: 5bz7uzgp
+  node_file: filter_orgs.sql
+  outputs:
+    output_table: organizations
+  title: Filter orgs
+- display:
+    x: 5
+    y: 4
+  id: 6h5kl3m5
+  inputs:
+    completions: completions
+  node_file: run_generated_sql.py
+  outputs:
+    results: results
+  parameter_values:
+    connection: ${{ connection.openai }}
+  title: Run generated SQL
+- display:
+    x: 1
+    y: 2
+  id: 6zozygf4
+  node_file: filter_funding_rounds.sql
+  outputs:
+    output_table: funding_rounds
+  title: Filter funding rounds
+- display:
+    style: form
+    width: 3
+    x: -3
+    y: 6
+  id: e3j63oxz
+  node_file: manual_question.py
+  parameter_values:
+    Question: how many companies did Sequoia invest in last year?
+  title: Manual question
+- display:
+    x: 7
+    y: 4
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/slack.svg
+  id: ebjtv32q
+  node_file: send_slack_message.py
+  parameter_values:
+    slackbot_connection: ${{ connection.slackbot_2 }}
+  title: Send slack message
+- display:
+    x: -3
+    y: 5
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/gmail.svg
+  id: oshszjwo
+  node_file: gmail.py
+  outputs:
+    messages: messages
+  parameter_values:
+    gmail_app_password: ${{ kvh_gmail_app_password }}
+  title: Receive email
+  trigger: 0 * * * *
+- display:
+    x: 1
+    y: 4
+  id: qa04fuoi
+  inputs:
+    questions: questions
+  node_file: build_prompt_from_tables.py
+  outputs:
+    prompts: prompts
+- display:
+    x: -1
+    y: 4
+  id: svl4za5s
+  node_file: format_mention.py
+  outputs:
+    questions: questions
+  title: Format mention
+- description_file: readme-gmail.md
+  display:
+    x: 7
+    y: 5
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/gmail.svg
+  id: tc3lnnkr
+  node_file: send_gmail.py
+  parameter_values:
+    gmail_app_password: ${{ kvh_gmail_app_password }}
+    sender_email: kvh@patterns.app
+  title: Send Gmail
+- display:
+    x: 1
+    y: 1
+  id: udivrqpr
+  node_file: filter_investments.sql
+  outputs:
+    output_table: investments
+  title: Filter investments
+- display:
+    x: -1
+    y: 5
+  id: wyp7dds6
+  node_file: format_message.py
+  title: Format message
+- display:
+    x: -3
+    y: 4
+  id: x6vvfchf
+  title: Slack questions
+  webhook: mentions
+storages:
+- database: Default_ro
+  definition: Default
+  engines:
+  - postgres
+  namespace:
+  - public
+  read_only: true
+stores:
+- display:
+    x: 0
+    y: 4
+  id: 7sedx6fc
+  table: questions
+- display:
+    x: 0
+    y: 0
+  id: acbm2few
+  storage: Default_ro
+  table: crunchbase_organizations
+- display:
+    x: 6
+    y: 4
+  id: dshjjq6i
+  table: results
+- display:
+    x: 6
+    y: 3
+  id: fiqyfurh
+  table: sql_fixes
+- display:
+    x: 4
+    y: 4
+  id: kfh2w4ts
+  table: completions
+- display:
+    x: 2
+    y: 1
+  id: qvgkwhgl
+  table: investments
+- display:
+    x: -2
+    y: 4
+  id: rqw62cxu
+  table: mentions
+- display:
+    x: -2
+    y: 5
+  id: ujbpixrr
+  table: messages
+- display:
+    x: 2
+    y: 4
+  id: urg7646x
+  table: prompts
+- display:
+    x: 2
+    y: 0
+  id: v63mxhbd
+  table: organizations
+- display:
+    x: 2
+    y: 2
+  id: vpwgbr3k
+  table: funding_rounds
+- display:
+    x: 0
+    y: 1
+  id: acbm2few2
+  storage: Default_ro
+  table: crunchbase_investments
+- display:
+    x: 0
+    y: 2
+  id: acbm2few3
+  storage: Default_ro
+  table: crunchbase_funding_rounds
+title: Crunchbase SQL Bot
+description_file: readme.md

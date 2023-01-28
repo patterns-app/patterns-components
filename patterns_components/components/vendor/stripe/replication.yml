@@ -1,6 +1,6 @@
 title: Replicate Stripe Tables
 slug: stripe-replicate-all
-icon: logo.svg
+icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/stripe.svg
 description_file: replication/readme.md
 tags:
   - beta
@@ -9,7 +9,7 @@ tags:
   - payments
   - finance
   - source
-version: 2.0.4
+version: 2.0.5
 exposes:
   outputs:
     - stripe_charges

@@ -1,14 +1,14 @@
 title: Replicate Square Tables
 slug: square-replicate-all
 description_file: replication/readme.md
-icon: logo.svg
+icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/square.svg
 tags:
   - square
   - finance
   - payments
   - ecommerce
   - source
-version: 2.0.0
+version: 2.0.1
 exposes:
   outputs:
     - square_payments
