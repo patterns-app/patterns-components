@@ -1,0 +1,173 @@
+dashboards:
+- id: lnn5kohb
+  items:
+  - id: ihupif3s
+    node: ftbisvsi
+    position:
+      height: 3
+      width: 4
+      x: 0
+      y: 0
+    type: chart
+  title: Model Accuracy
+description_file: README.md
+functions:
+- display:
+    x: 2
+    y: 1
+  id: 3lbxw7tx
+  outputs:
+    google_spreadsheet_data: cohere_test_data
+  parameter_values:
+    connection: ${{ connection.google_sheets }}
+    sheet_name: Test Data
+    spreadsheet_id: ${{ spreadsheet_id }}
+  title: Import Test Data
+  uses: patterns/google-spreadsheet-import-data@v2
+- display:
+    x: 6
+    y: 7
+  id: 73fz75gq
+  node_file: get_score_greater_than_20.sql
+  outputs:
+    output_table: output_table2
+  title: Get Score Greater than 20
+- chart_input: output_table2
+  display:
+    height: 3
+    width: 4
+    x: 8
+    y: 7
+  id: c4zoxkpl
+  node_file: chart_njrqy9.json
+  title: Prominent Categories (Count w/ Score > 20)
+- display:
+    x: 6
+    y: 1
+  id: ehm4vg3e
+  inputs:
+    exportable_table: cohere_output
+  parameter_values:
+    connection: ${{ connection.google_sheets }}
+    mode: replace
+    sheet_name: Cohere Output
+    spreadsheet_id: ${{ cohere_spreadsheet_id }}
+  title: Export Data to Google Spreadsheet
+  uses: patterns/google-export-spreadsheet@v2
+- display:
+    x: 2
+    y: 2
+  id: fasahg5c
+  outputs:
+    google_spreadsheet_data: cohere_training_data
+  parameter_values:
+    connection: ${{ connection.google_sheets }}
+    ignore_rows: ''
+    sheet_name: Tagged Stories
+    spreadsheet_id: ${{ spreadsheet_id }}
+  title: Import Training Data
+  uses: patterns/google-spreadsheet-import-data@v2
+- chart_input: cohere_output
+  display:
+    height: 3
+    width: 4
+    x: 8
+    y: 1
+  id: ftbisvsi
+  node_file: chart_tr8dax.json
+  title: confidence_histogram
+- chart_input: mean_confidence
+  display:
+    height: 2
+    width: 3
+    x: 8
+    y: -1
+  id: iqjfwsch
+  node_file: chart_8a0v8c.json
+  title: mean_confidence_chart
+- display:
+    x: 4
+    y: 2
+  id: jal2drj6
+  inputs:
+    cohere_examples: cohere_training_data
+    cohere_inputs: cohere_test_data
+  outputs:
+    cohere_output: cohere_output
+  parameter_values:
+    Example Category Column: Tag
+    Example Text Column: Title
+    Input Text Column: Title
+    cohere_connection: ${{ connection.cohere }}
+  title: Cohere co.classify
+  uses: patterns/cohere-classify@v2
+- chart_input: cohere_output
+  display:
+    height: 3
+    width: 4
+    x: 8
+    y: 4
+  id: v6as3sa3
+  node_file: chart_omgoib.json
+  title: Mean Score by Category
+- chart_input: percent_above_threshold
+  display:
+    height: 2
+    width: 3
+    x: 12
+    y: 0
+  id: wtfhkere
+  node_file: chart_c9wvp6.json
+  title: percent of population above 0.8 confidence
+- display:
+    x: 12
+    y: 2
+  id: y3rleap2
+  inputs:
+    cohere_output2: cohere_output
+  node_file: percent_of_population_above_08_confidence.sql
+  outputs:
+    output_table: percent_above_threshold
+  title: percent of population above 0.8 confidence
+- display:
+    x: 6
+    y: 2
+  id: zcph6cj4
+  inputs:
+    cohere_output2: cohere_output
+  node_file: get_mean_confidence.sql
+  outputs:
+    output_table: mean_confidence
+  title: Get Mean Confidence
+stores:
+- display:
+    x: 7
+    y: 2
+  id: da7t4k7d
+  table: mean_confidence
+- display:
+    x: 7
+    y: 7
+  id: ewv3s5uo
+  table: output_table2
+- display:
+    x: 3
+    y: 1
+  id: gotytszx
+  table: cohere_test_data
+- display:
+    x: 5
+    y: 2
+  id: k23w4rld
+  table: cohere_output
+- display:
+    x: 3
+    y: 2
+  id: uag6efh2
+  table: cohere_training_data
+- display:
+    x: 13
+    y: 2
+  id: yjwhm6xw
+  table: percent_above_threshold
+title: Cohere Classifier - Hackernews
