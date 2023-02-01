@@ -1,0 +1,20 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Plot showing average data with raw values in the background.",
+  "layer": [
+    {
+      "mark": { "type": "point", "color": "#FF3347", "opacity": 0.9 },
+      "encoding": {
+        "x": { "field": "Workout Timestamp", "type": "temporal" },
+        "y": { "field": "Total Output", "type": "quantitative" }
+      }
+    },
+    {
+      "mark": { "color": "gray", "type": "line", "size": 1 },
+      "encoding": {
+        "x": { "type": "temporal", "field": "Workout Timestamp" },
+        "y": { "aggregate": "mean", "field": "Total Output" }
+      }
+    }
+  ]
+}

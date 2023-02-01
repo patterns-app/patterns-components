@@ -1,0 +1,93 @@
+description_file: readme.md
+docs:
+- display:
+   color: yellow
+   x: 6
+   y: 3
+  id: step1md
+  markdown_file: step_1.md
+- display:
+   color: purple
+   x: 6
+   y: 4
+  id: step2md
+  markdown_file: step_2.md
+- display:
+   color: blue
+   x: 6
+   y: 5
+  id: step3md
+  markdown_file: step_3.md
+- display:
+   color: green
+   x: 6
+   y: 6
+  id: step4md
+  markdown_file: step_4.md
+functions:
+- display:
+   color: green
+   x: 7
+   y: 6
+  id: 5fzlqxbi
+  inputs:
+   messages: completions
+  parameter_values:
+   message_template: "Hot incoming lead from: {record[email]}.  Here's an email example\
+    \ for them:\n\n{completion}"
+   slack_webhook_url:
+  title: Post Email Example to Slack
+  uses: patterns/slack-post-message@v5
+- display:
+   color: purple
+   x: 7
+   y: 4
+  id: 6pvhcq5f
+  inputs:
+   forms: forms
+  node_file: create_gpt_prompt.py
+  outputs:
+   prompts: prompts
+  title: Create GPT Prompt
+- display:
+   color: blue
+   x: 7
+   y: 5
+  id: bol6xo3y
+  inputs:
+   prompts: prompts
+  outputs:
+   completions: completions
+  parameter_values:
+   connection:
+   max_tokens: 300
+   prompt_template: '{prompt}'
+  title: OpenAI - GPT3 completion
+  uses: patterns/openai-completion@v4
+- display:
+   color: yellow
+   x: 7
+   y: 3
+  id: ueg2pgxh
+  title: Typeform Webhook
+  webhook: forms
+stores:
+- display:
+   color: blue
+   x: 8
+   y: 5
+  id: 2j6ckbcz
+  table: completions
+- display:
+   color: yellow
+   x: 8
+   y: 3
+  id: 6utcqbvd
+  table: forms
+- display:
+   color: purple
+   x: 8
+   y: 4
+  id: zmqggvhj
+  table: prompts
+title: Sales Lead Email Generator

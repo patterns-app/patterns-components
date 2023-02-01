@@ -1,0 +1,24 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Rolling Average of Workouts",
+  "width": 400,
+  "height": 300,
+  "encoding": {
+    "x": { "field": "Workout Timestamp", "type": "temporal", "title": "Date" },
+    "y": { "type": "quantitative", "axis": { "title": "Calories Burned" } }
+  },
+  "layer": [
+    {
+      "mark": { "type": "point", "color": "black", "opacity": 0.9 },
+      "encoding": {
+        "y": { "field": "Calories Burned", "title": "Calories Burned" }
+      }
+    },
+    {
+      "mark": { "type": "line", "color": "#FF3347", "size": 1 },
+      "encoding": {
+        "y": { "field": "Calories Burned", "title": "Calories Burned" }
+      }
+    }
+  ]
+}

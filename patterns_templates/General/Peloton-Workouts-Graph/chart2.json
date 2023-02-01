@@ -1,0 +1,18 @@
+{
+  "description": "Output by Instructor",
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "Instructor Name",
+      "type": "nominal",
+      "title": "Instructor"
+    },
+    "y": {
+      "field": "sum_output",
+      "type": "quantitative",
+      "title": "Total Output"
+    },
+    "color": { "value": "#FF3347" },
+    "tooltip": { "field": "sum_output", "type": "quantitative" }
+  }
+}

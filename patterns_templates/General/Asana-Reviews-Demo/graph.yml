@@ -1,0 +1,221 @@
+dashboards:
+- id: lnn5kohb
+  items:
+  - id: 4pl4vsiu
+    node: iqjfwsch
+    position:
+     x: 0
+     y: 2
+    type: chart
+  - id: g7sgo2dz
+    node: ws3e5k7p
+    position:
+     height: 4
+     width: 3
+     x: 3
+     y: 0
+    type: data
+  - id: ho2ncob7
+    node: c4zoxkpl
+    position:
+     height: 2
+     width: 3
+     x: 0
+     y: 0
+    type: chart
+  - id: m3nhp5xb
+    node: 5atknp55
+    position:
+     width: 2
+     x: 1
+     y: 2
+    type: chart
+  title: Review Results
+docs:
+- display:
+   width: 4
+   x: 6
+   y: 6
+  id: 7w3leuh5
+  markdown_file: markdown1.md
+- display:
+   width: 4
+   x: 11
+   y: 2
+  id: bxvvofd5
+  markdown_file: markdown2.md
+- display:
+   width: 4
+   x: 6
+   y: 2
+  id: byhehks6
+  markdown_file: markdown.md
+- display:
+   width: 2
+   x: 0
+   y: 4
+  id: j66kkgc3
+  markdown_file: example_data.md
+- display:
+   width: 4
+   x: 6
+   y: -1
+  id: om5lh5zr
+  markdown_file: markdown3.md
+- display:
+   width: 2
+   x: 0
+   y: 2
+  id: rc5pgpkg
+  markdown_file: test_data.md
+- display:
+   width: 2
+   x: 3
+   y: 3
+  id: sjcx5hpe
+  markdown_file: markdown4.md
+functions:
+- description_file: readme_4.md
+  display:
+   x: 8
+   y: 0
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/google-sheets.svg
+  id: 4aroabcc
+  inputs:
+   table: sorted_cohere_output
+  node_file: export_to_sheet.py
+  parameter_values:
+   connection: ${{ connection.google_sheets }}
+   mode: replace
+   sheet_title: Cohere Output
+   spreadsheet_url: https://docs.google.com/spreadsheets/d/17hiRasG2woL2QaFGtpN43x1MlcMFWLQn0vlTLa2s6bU/edit#gid=1415998406
+  title: Export to Sheet
+- display:
+   x: 11
+   y: 3
+  id: 4d3urbs6
+  node_file: _of_predictions_with_confidence_over_08.sql
+  outputs:
+   output_table: percent_above_threshold
+  title: '% of predictions with confidence over 0.8'
+- chart_input: percent_above_threshold
+  display:
+   height: 2
+   width: 3
+   x: 13
+   y: 3
+  id: 5atknp55
+  node_file: chart_8a0v8c_copy.json
+  title: percent of population above 0.8 confidence
+- description_file: readme.md
+  display:
+   x: 0
+   y: 3
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/google-sheets.svg
+  id: 5xw3ifgw
+  node_file: import_sheet.py
+  outputs:
+   spreadsheet: cohere_input
+  parameter_values:
+   connection: ${{ connection.google_sheets }}
+   sheet_title: Test Data
+   spreadsheet_url: https://docs.google.com/spreadsheets/d/17hiRasG2woL2QaFGtpN43x1MlcMFWLQn0vlTLa2s6bU/edit#gid=1415998406
+  title: Import Sheet
+- display:
+   x: 5
+   y: 8
+  id: 73fz75gq
+  node_file: get_score_greater_than_20.sql
+  outputs:
+   output_table: prominent_categories
+  title: Get Score Greater than 20
+- chart_input: prominent_categories
+  display:
+   height: 4
+   width: 7
+   x: 7
+   y: 7
+  id: c4zoxkpl
+  node_file: chart_njrqy9.json
+  title: Prominent Categories
+- description_file: readme_3.md
+  display:
+   x: 3
+   y: 4
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/cohere.svg
+  id: dngmmw5d
+  inputs:
+   cohere_inputs: cohere_input
+  node_file: cohere_classify.py
+  outputs:
+   cohere_output: cohere_output
+  parameter_values:
+   Example Category Column: Review Category
+   Example Text Column: Review Text
+   Input Text Column: Review Text
+   cohere_connection: ${{ connection.cohere }}
+  title: Cohere Classify
+- chart_input: cohere_output
+  display:
+   height: 3
+   width: 4
+   x: 6
+   y: 3
+  id: ftbisvsi
+  node_file: chart_tr8dax.json
+  title: confidence_histogram
+- display:
+   x: 6
+   y: 0
+  id: ktmy2uyt
+  node_file: sort_cohere_output_by_confidence.sql
+  outputs:
+   output_table: sorted_cohere_output
+  title: Sort cohere output by confidence
+- description_file: readme_2.md
+  display:
+   x: 0
+   y: 5
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/google-sheets.svg
+  id: qdujllby
+  node_file: import_sheet_2.py
+  outputs:
+   spreadsheet: cohere_examples
+  parameter_values:
+   connection: ${{ connection.google_sheets }}
+   sheet_title: Example Data
+   spreadsheet_url: https://docs.google.com/spreadsheets/d/17hiRasG2woL2QaFGtpN43x1MlcMFWLQn0vlTLa2s6bU/edit#gid=1415998406
+  title: Import Sheet
+stores:
+- display:
+   x: 4
+   y: 4
+  id: 5dokzuyd
+  table: cohere_output
+- display:
+   x: 6
+   y: 8
+  id: ewv3s5uo
+  table: prominent_categories
+- display:
+   x: 1
+   y: 3
+  id: gotytszx
+  table: cohere_input
+- display:
+   x: 12
+   y: 3
+  id: tifmgqpu
+  table: percent_above_threshold
+- display:
+   x: 1
+   y: 5
+  id: uag6efh2
+  table: cohere_examples
+- display:
+   x: 7
+   y: 0
+  id: ws3e5k7p
+  table: sorted_cohere_output
+title: Asana Reviews Demo
+description_file: README.md

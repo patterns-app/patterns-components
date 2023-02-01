@@ -1,0 +1,68 @@
+description_file: readme.md
+functions:
+- display:
+   x: -3
+   y: 0
+  id: 3b2ncmrr
+  title: Slack Mention Webhook
+  webhook: mentions
+- display:
+   x: 3
+   y: 0
+  id: 6i3qvdjc
+  node_file: Respond_in_slack.py
+  parameter_values:
+   slackbot:
+  title: Respond in Slack
+- display:
+   x: 1
+   y: 0
+  id: 7ici5x4o
+  inputs:
+   prompts: prompts
+  outputs:
+   completions: completions
+  parameter_values:
+   connection:
+   max_tokens: 500
+   prompt_template: "Give professional software engineering advice for the following\
+    \ question. Provide detailed steps and explanations, but in a light-hearted and\
+    \ goofy manner.\n\nQuestion: How do compilers work in a language that doesn't\
+    \ allow recursion?\n\nAnswer: Great question chap! Recursion can only be programmed\
+    \ either by having a call to function A within the definition of A itself (direct),\
+    \ or by having function A call function B, and function B call function A (indirect).\
+    \ It is easy to forbid both possibilities simply by requiring that every call\
+    \ to a function must occur after the definition of that method is complete. The\
+    \ technical term is forward referencing; every recursive program must contain\
+    \ at last one syntactical forward reference. By forbidding the forward reference,\
+    \ you implicitly also disallow any recursion. Hope that helps ;)\n\nQuestion:\
+    \ {prompt}"
+   strip_from_completion: Answer:\s*
+   temperature: '0.85'
+  title: OpenAI - GPT3 Completion
+  uses: patterns/openai-completion@v4
+- display:
+   x: -1
+   y: 0
+  id: riy4ncew
+  node_file: turn_mention_into_prompt.py
+  outputs:
+   prompts: prompts
+  title: Turn Mention into Prompt
+stores:
+- display:
+   x: 0
+   y: 0
+  id: 4tr2pdjb
+  table: prompts
+- display:
+   x: -2
+   y: 0
+  id: dmem74rx
+  table: mentions
+- display:
+   x: 2
+   y: 0
+  id: nhpwhwky
+  table: completions
+title: Eng Advice GPT3 Slack Bot

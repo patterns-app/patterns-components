@@ -1,0 +1,435 @@
+dashboards:
+- id: 32ejc5aw
+  items:
+  - id: 3g5eag3t
+    node: tgg4c7ej
+    position:
+     height: 2
+     width: 3
+     x: 0
+     y: 0
+    type: chart
+  - id: 3xge5ypc
+    node: js7f2bvl
+    position:
+     height: 2
+     width: 3
+     x: 0
+     y: 2
+    type: chart
+  - id: 6mfsy3lx
+    node: ezsrd3zm
+    position:
+     height: 2
+     width: 2
+     x: 3
+     y: 0
+    type: chart
+  - id: bnxk5ni7
+    node: bimsxkn4
+    position:
+     x: 5
+     y: 0
+    type: data
+  - id: cp3tunk3
+    node: vnzqlvup
+    position:
+     width: 2
+     x: 4
+     y: 6
+    type: data
+  - id: f5754r2k
+    node: eq6tsvzb
+    position:
+     height: 2
+     width: 3
+     x: 3
+     y: 2
+    type: chart
+  - id: ihtgwq6j
+    node: bimsxkn4
+    position:
+     width: 2
+     x: 4
+     y: 5
+    type: data
+  - id: nav5wrhk
+    node: js7f2bvl
+    position:
+     height: 2
+     width: 2
+     x: 3
+     y: 7
+    type: chart
+  - id: ruzdnejn
+    node: vnzqlvup
+    position:
+     x: 5
+     y: 1
+    type: data
+  title: 'View #2'
+- id: 7q5hitbf
+  items:
+  - id: 5f5jsqoq
+    node: uv8sfimt
+    position:
+     width: 2
+     x: 2
+     y: 2
+    type: chart
+  - id: 5jswrm4t
+    node: lvxorua2
+    position:
+     width: 2
+     x: 0
+     y: 1
+    type: chart
+  - id: chjrmrat
+    node: oghhcbop
+    position:
+     width: 2
+     x: 2
+     y: 1
+    type: chart
+  - id: d27fx4la
+    node: tlimhgsf
+    position:
+     width: 2
+     x: 0
+     y: 3
+    type: chart
+  - id: iidbhmqp
+    node: nemxprpf
+    position:
+     width: 2
+     x: 4
+     y: 2
+    type: chart
+  - id: ilvoaq66
+    node: 67hsv5no
+    position:
+     width: 2
+     x: 4
+     y: 1
+    type: chart
+  - id: kqs6nrsf
+    node: 2k325op5
+    position:
+     width: 2
+     x: 0
+     y: 0
+    type: chart
+  - id: n4k2hhoo
+    node: iw4y72lf
+    position:
+     width: 2
+     x: 2
+     y: 0
+    type: chart
+  - id: nwyiney6
+    node: rxkcfn0b
+    position:
+     width: 2
+     x: 4
+     y: 0
+    type: chart
+  - id: qk2qoiha
+    node: 6d6vclku
+    position:
+     width: 2
+     x: 0
+     y: 2
+    type: chart
+  - id: xgczzamy
+    node: ebwkbdrh
+    position:
+     width: 2
+     x: 4
+     y: 3
+    type: chart
+  - id: xxhuwckf
+    node: 3fetllgs
+    position:
+     width: 2
+     x: 2
+     y: 3
+    type: chart
+  title: 'View #1'
+description_file: readme.md
+docs:
+- display:
+   width: 5
+   x: -9
+   y: 3
+  id: fhaux7se
+  markdown_file: readme.md
+functions:
+- chart_input: total_workouts_per_year
+  display:
+   height: 4
+   width: 4
+   x: 3
+   y: 4
+  id: 2k325op5
+  node_file: chart_f8evog.json
+  title: Workouts per Year
+- chart_input: workouts_table
+  display:
+   height: 4
+   width: 4
+   x: 7
+   y: 0
+  id: 3fetllgs
+  node_file: chart_2xbxlb.json
+  title: Calories Burned per Class
+- chart_input: total_distance_per_instructor
+  display:
+   height: 4
+   width: 4
+   x: 11
+   y: 4
+  id: 67hsv5no
+  node_file: chart_ffx7om.json
+  title: Distance by Instructor
+- chart_input: annual_stats
+  display:
+   height: 4
+   width: 4
+   x: 3
+   y: -4
+  id: 6d6vclku
+  node_file: chart_ds2l41.json
+  title: Avg Output Per Year
+- display:
+   x: 0
+   y: 1
+  id: 6sgocrbd
+  node_file: sql5.sql
+  outputs:
+   output_table: total_distance_per_instructor
+- display:
+   x: 0
+   y: 8
+  id: ai4gpwga
+  inputs:
+   table2: table2
+  node_file: sql3.sql
+  outputs:
+   output_table: avg_output_calculation
+- display:
+   x: 0
+   y: 7
+  id: bu357vnz
+  inputs:
+   table2: table2
+  node_file: sql4.sql
+  outputs:
+   output_table: Total_Miles_Ridden
+- chart_input: workouts_table
+  display:
+   height: 4
+   width: 4
+   x: 7
+   y: -4
+  id: ebwkbdrh
+  node_file: chart_0970i7.json
+  title: Average Watts per Ride
+- chart_input: workouts_table
+  display:
+   height: 4
+   width: 4
+   x: 15
+   y: 0
+  id: eq6tsvzb
+  node_file: chart_0y9kk4.json
+  title: Total Output
+- display:
+   x: 0
+   y: 2
+  id: esp7nye6
+  inputs:
+   table2: table2
+  node_file: sql2.sql
+  outputs:
+   output_table: total_output_per_instructor
+- chart_input: workouts_table
+  display:
+   height: 4
+   width: 4
+   x: 11
+   y: -4
+  id: ezsrd3zm
+  node_file: chart_vosj7c.json
+  title: Total Output Range of Outcomes
+- display:
+   x: 0
+   y: 3
+  id: g2giwu73
+  inputs:
+   table2: table2
+  node_file: sql1.sql
+  outputs:
+   output_table: total_ride_count
+- chart_input: workouts_table
+  display:
+   height: 4
+   width: 4
+   x: 15
+   y: 4
+  id: iw4y72lf
+  node_file: chart_kk6460.json
+  title: Path to 200k Total kCals Burned
+- chart_input: workouts_table
+  display:
+   height: 4
+   width: 4
+   x: 15
+   y: 8
+  id: js7f2bvl
+  node_file: chart_u098jj.json
+  title: Magnitude of Workouts
+- chart_input: annual_stats
+  display:
+   height: 4
+   width: 4
+   x: 3
+   y: 0
+  id: lvxorua2
+  node_file: chart_3x0tes.json
+  title: Minutes Riding per Year
+- display:
+   x: 0
+   y: 4
+  id: lwyac4gy
+  inputs:
+   table2: table2
+  node_file: sql.sql
+  outputs:
+   output_table: total_workouts_per_year
+- chart_input: table2
+  display:
+   height: 4
+   width: 4
+   x: 7
+   y: 8
+  id: nemxprpf
+  node_file: chart1.json
+  title: Total Output per Ride
+- chart_input: workouts_table
+  display:
+   height: 4
+   width: 4
+   x: 11
+   y: 0
+  id: oghhcbop
+  node_file: chart_o4nfif.json
+  title: Output by Class Length
+- display:
+   x: 0
+   y: 5
+  id: ohlnewy7
+  node_file: sql7.sql
+  outputs:
+   output_table: workouts_table
+- display:
+   x: -7
+   y: 7
+  id: rid47zdk
+  node_file: Import_from_Peloton.py
+  outputs:
+   table2: table2
+  parameter_values:
+   pton_password: ${{ pton_password }}
+   pton_username: ${{ pton_username }}
+  title: Import from Peloton
+  trigger: 0 22 * * *
+- chart_input: total_output_per_instructor
+  display:
+   height: 4
+   width: 4
+   x: 11
+   y: 8
+  id: rxkcfn0b
+  node_file: chart2.json
+  title: Output by Instructor
+- display:
+   x: 0
+   y: 6
+  id: ss27wx4y
+  node_file: sql6.sql
+  outputs:
+   output_table: annual_stats
+- chart_input: workouts_table
+  display:
+   height: 4
+   width: 4
+   x: 15
+   y: -4
+  id: tgg4c7ej
+  node_file: chart_i9h8pi.json
+  title: Calories Burned
+- chart_input: annual_stats
+  display:
+   height: 4
+   width: 4
+   x: 3
+   y: 8
+  id: tlimhgsf
+  node_file: chart_zc53gx.json
+  title: Total Distance Per Year
+- chart_input: avg_output_calculation
+  display:
+   height: 4
+   width: 4
+   x: 7
+   y: 4
+  id: uv8sfimt
+  node_file: chart3.json
+  title: Average Output per Minute
+stores:
+- display:
+   x: 1
+   y: 8
+  id: 70jq6i8h
+  table: avg_output_calculation
+- display:
+   x: 1
+   y: 7
+  id: bimsxkn4
+  table: Total_Miles_Ridden
+- display:
+   x: -5
+   y: 7
+  id: co21fy6g
+  table: table2
+- display:
+   x: 1
+   y: 5
+  id: evzydsvu
+  table: workouts_table
+- display:
+   x: 1
+   y: 4
+  id: g8pz26ny
+  table: total_workouts_per_year
+- display:
+   x: 1
+   y: 6
+  id: gtkpr2cl
+  table: annual_stats
+- display:
+   x: 1
+   y: 2
+  id: iqh5c0mj
+  table: total_output_per_instructor
+- display:
+   x: 1
+   y: 1
+  id: r4pv37f4
+  table: total_distance_per_instructor
+- display:
+   x: 1
+   y: 3
+  id: vnzqlvup
+  table: total_ride_count
+title: Peloton Dashboard

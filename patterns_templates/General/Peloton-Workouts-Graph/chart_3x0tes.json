@@ -1,0 +1,14 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bar Chart",
+  "mark": { "type": "bar", "color": "#777A81", "strokeWidth": 2 },
+  "encoding": {
+    "x": { "field": "year", "type": "temporal", "title": "Year" },
+    "y": {
+      "field": "total_minutes_per_year",
+      "type": "quantitative",
+      "title": "Total Minutes per Year"
+    },
+    "tooltip": { "field": "total_minutes_per_year", "type": "quantitative" }
+  }
+}

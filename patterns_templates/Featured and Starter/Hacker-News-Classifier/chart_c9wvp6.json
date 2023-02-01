@@ -1,0 +1,22 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "encoding": {
+    "text": {
+      "field": "out_str",
+      "type": "ordinal"
+    }
+  },
+  "mark": {
+    "type": "text",
+    "fill": "red",
+    "fontSize": 100,
+    "fillOpacity": 1,
+    "x": 10,
+    "y": 10
+  },
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

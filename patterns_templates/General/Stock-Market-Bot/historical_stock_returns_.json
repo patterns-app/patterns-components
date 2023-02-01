@@ -1,0 +1,31 @@
+{
+"title": {
+    "text": "Historical Stock Returns",
+    "anchor": "start"
+},
+
+"encoding": {
+  "y": {"field": "ticker"},
+  "x": {"field": "week_ago", "sort":"descending"}
+},
+"layer": [
+  {
+    "mark": "rect",
+    "encoding": {
+      "y": {"field": "ticker"},
+      "x": {"field": "week_ago"},
+      "color": {"field": "percent_return", "type": "quantitative",  "scale": {"scheme": "redyellowgreen"}}
+      
+    }
+  },
+  {
+    "mark": "text", 
+    "encoding": {
+      "text":{"field": "percent_return", "type": "quantitative"}
+    }
+  }
+  ],
+   "config": {
+    "axis": {"grid": true, "tickBand": "extent"}
+  }
+}

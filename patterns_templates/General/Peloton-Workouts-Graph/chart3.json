@@ -1,0 +1,49 @@
+{
+  "width": 1000,
+  "height": 800,
+  "title": "Average Output per Minute",
+  "layer": [
+    {
+      "mark": { "type": "point", "color": "#FF3347", "size": 1 },
+      "encoding": {
+        "x": {
+          "field": "Workout Timestamp",
+          "type": "temporal",
+          "title": "Date of Workout"
+        },
+        "y": {
+          "field": "avg_output",
+          "type": "quantitative",
+          "title": "Average Output per Minute"
+        },
+        "tooltip": [
+          { "field": "avg_output", "type": "nominal" },
+          { "field": "avg_output", "type": "quantitative" }
+        ],
+        "size": { "field": "Total Output", "type": "quantitative" }
+      }
+    },
+    {
+      "mark": { "type": "line", "color": "#777A81" },
+      "transform": [
+        {
+          "regression": "avg_output",
+          "on": "Workout Timestamp",
+          "method": "poly"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "Workout Timestamp",
+          "type": "temporal",
+          "title": "Date of Workout"
+        },
+        "y": { "field": "avg_output", "type": "quantitative" },
+        "tooltip": [
+          { "field": "Workout Timestamp", "type": "nominal" },
+          { "field": "avg_output", "type": "quantitative" }
+        ]
+      }
+    }
+  ]
+}

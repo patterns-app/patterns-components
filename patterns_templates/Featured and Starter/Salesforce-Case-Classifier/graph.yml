@@ -1,0 +1,82 @@
+description_file: readme.md
+docs:
+- display:
+   color: default
+   width: 3
+   x: 0
+   y: -3
+  id: mtbhfitd
+  markdown_file: markdown.md
+functions:
+- display:
+   x: 0
+   y: -1
+  id: 2mj7t7o7
+  inputs:
+   cohere_examples: salesforce_training
+   cohere_inputs: salesforce_testing
+  parameter_values:
+   Auto Truncate: false
+   Example Category Column: Type
+   Example Text Column: Subject
+   Input Text Column: Subject
+   cohere_connection: ${{ connection.cohere }}
+  title: Cohere co.classify
+  uses: patterns/cohere-classify@v2
+- display:
+   x: 2
+   y: -1
+  id: 2z3ouxiv
+  node_file: update_salesforce.py
+  parameter_values:
+   salesforce: ${{ connection.salesforce }}
+  title: update_salesforce
+- display:
+   x: -2
+   y: -2
+  id: 7ngy6gba
+  inputs:
+   webhook_results: webhook_results
+  node_file: prepare_records.py
+  outputs:
+   sf_testing: salesforce_testing
+- display:
+   x: -2
+   y: -1
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/salesforce.svg
+  id: k6fdc6qa
+  outputs:
+   query_results: salesforce_training
+  parameter_values:
+   connection: ${{ connection.salesforce }}
+   query: "SELECT Id, Type, Subject, Status\nFROM Case\nWHERE Type != null\nAND Status\
+    \ = 'Closed'"
+  uses: patterns/salesforce-import-soql@v1
+- display:
+   x: -4
+   y: -2
+  id: wax7cmmt
+  title: webhook
+  webhook: webhook_results
+stores:
+- display:
+   x: -1
+   y: -1
+  id: 6wsoydkz
+  table: salesforce_training
+- display:
+   x: -3
+   y: -2
+  id: axjvf4nu
+  table: webhook_results
+- display:
+   x: 1
+   y: -1
+  id: jcycsw7w
+  table: cohere_output
+- display:
+   x: -1
+   y: -2
+  id: mwkcdd5v
+  table: salesforce_testing
+title: Salesforce Case Classifier

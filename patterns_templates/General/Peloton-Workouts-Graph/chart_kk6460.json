@@ -1,0 +1,24 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "transform": [
+    {
+      "sort": [{ "field": "Workout Timestamp" }],
+      "window": [
+        { "op": "sum", "field": "Total Output", "as": "Total Output" }
+      ],
+      "frame": [null, 0]
+    }
+  ],
+  "mark": { "type": "area", "color": "#FF3347" },
+  "encoding": {
+    "x": {
+      "field": "Workout Timestamp",
+      "type": "temporal"
+    },
+    "y": {
+      "field": "Total Output",
+      "type": "quantitative"
+    },
+    "tooltip": { "field": "Total Output", "type": "quantitative" }
+  }
+}
