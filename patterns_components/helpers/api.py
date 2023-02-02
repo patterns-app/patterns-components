@@ -118,6 +118,11 @@ def handle_rate_limiting(
     retry_status_codes = retry_status_codes or [429, 503]
     ratelimit_headers = parse_rate_limit_headers(resp.headers)
     if resp.status_code in retry_status_codes:
+        # Display error to user
+        try:
+            logger(resp.json())
+        except ValueError:
+            logger(resp.text)
         if session is None:
             session = Session()
         buffer_seconds = 1
