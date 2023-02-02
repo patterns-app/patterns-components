@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "patterns-components"
-version = "0.1.1"
+version = "0.1.2"
 description = "Patterns open-source components"
 authors = []
 license = "BSD-3-Clause"
