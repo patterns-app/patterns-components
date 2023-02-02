@@ -1,0 +1,88 @@
+description_file: readme.md
+docs:
+- display:
+   x: 6
+   y: 1
+  id: b76blpry
+  markdown_file: markdown.md
+functions:
+- display:
+   x: 12
+   y: 3
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/openai.svg
+  id: 2l7ya6rc
+  node_file: openai_gpt.py
+  outputs:
+   completions: completions
+  parameter_values:
+   max_tokens: 3000
+   prompt_template: '{prompt}'
+  title: GPT Completion
+- display:
+   x: 10
+   y: 3
+  id: 4mrn6pwk
+  node_file: prompt_generator.py
+  title: Prompt Generator
+- display:
+   x: 14
+   y: 3
+  id: js7ujolw
+  node_file: slack_responder.py
+  title: Slack Responder
+- display:
+   x: 8
+   y: 3
+  id: tgflovei
+  node_file: command_parser.py
+  outputs:
+   commands: commands
+   sessions: sessions
+  title: Command Parser
+- display:
+   x: 6
+   y: 4
+  id: vavy4cmj
+  title: Slack Webhook
+  webhook: slack_events
+- display:
+   x: 6
+   y: 2
+  id: zgysrpm7
+  node_file: import_slack_users.py
+  outputs:
+   users: users
+  title: Import Slack Users
+  trigger: 0 2 * * *
+stores:
+- display:
+   x: 13
+   y: 3
+  id: 4mjj2bqs
+  table: completions
+- display:
+   x: 7
+   y: 2
+  id: b24oie5i
+  table: users
+- display:
+   x: 9
+   y: 2
+  id: fgj5ujmx
+  table: sessions
+- display:
+   x: 11
+   y: 3
+  id: fnxvtyj5
+  table: prompts
+- display:
+   x: 7
+   y: 4
+  id: jb74vwrj
+  table: slack_events
+- display:
+   x: 9
+   y: 4
+  id: zv2mmex2
+  table: commands
+title: Slack Summarizer

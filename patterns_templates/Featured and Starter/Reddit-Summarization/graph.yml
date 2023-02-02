@@ -1,0 +1,70 @@
+functions:
+- display:
+    style: form
+    width: 2
+    x: 9
+    y: 2
+  id: 6lllp5ju
+  node_file: generate_email.py
+  outputs:
+    emails: emails
+  parameter_values:
+    recipient_email: calderwhite1@gmail.com
+  title: Generate Email
+- display:
+    height: 2
+    style: form
+    width: 2
+    x: 4
+    y: 2
+  id: cpzdcwx3
+  node_file: download_reddit_comments_with_titles.py
+  outputs:
+    reddit_comments: reddit_comments
+  parameter_values:
+    links_to_scrape: '10'
+    subreddit: finance
+  title: Download Reddit Comments (with Titles)
+- description_file: readme_4.md
+  display:
+    x: 7
+    y: 2
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/openai.svg
+  id: nruym33c
+  inputs:
+    prompts: reddit_comments
+  node_file: openai_gpt.py
+  outputs:
+    completions: completions
+  parameter_values:
+    max_tokens: 60
+    prompt_template: '{chunk_text} Tl;dr'
+    temperature: '0.7'
+  title: GPT Completion
+- description_file: readme_3.md
+  display:
+    x: 12
+    y: 2
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/gmail.svg
+  node_file: send_gmail.py
+  parameter_values:
+    html_body: true
+    sender_email: your.husky.watch.dog@gmail.com
+  title: Send Gmail
+stores:
+- display:
+    x: 11
+    y: 2
+  id: o6ofodqh
+  table: emails
+- display:
+    x: 8
+    y: 2
+  id: vscutkd2
+  table: completions
+- display:
+    x: 6
+    y: 2
+  id: zzqre2kq
+  table: reddit_comments
+title: Summarization

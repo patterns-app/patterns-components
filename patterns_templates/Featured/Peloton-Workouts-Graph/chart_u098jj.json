@@ -1,0 +1,38 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 400,
+  "transform": [{ "filter": "datum.Entity !== 'All natural disasters'" }],
+  "mark": {
+    "type": "circle",
+    "fill": "grey",
+    "opacity": 0.8,
+    "stroke": "#FF3347",
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "x": {
+      "field": "Workout Timestamp",
+      "type": "temporal",
+      "axis": { "grid": false }
+    },
+    "y": {
+      "field": "Length (minutes)",
+      "type": "ordinal",
+      "axis": { "title": "Length of Workout", "grid": true }
+    },
+    "size": {
+      "field": "Total Output",
+      "type": "quantitative",
+      "title": "Total Output",
+      "legend": { "clipHeight": 100 },
+      "scale": { "rangeMax": 750 }
+    },
+    "color": {
+      "field": "Total Output",
+      "type": "quantitative",
+      "legend": null
+    },
+    "tooltip": { "field": "Total Output", "type": "quantitative" }
+  }
+}

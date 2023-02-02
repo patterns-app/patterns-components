@@ -1,0 +1,14 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bar Chart",
+  "mark": { "type": "bar", "color": "#FF3347", "strokeWidth": 2 },
+  "encoding": {
+    "x": { "field": "year", "type": "temporal", "title": "Year" },
+    "y": {
+      "field": "avg_output_per_year",
+      "type": "quantitative",
+      "title": "Avg per Ride Output"
+    },
+    "tooltip": { "field": "avg_output_per_year", "type": "quantitative" }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "width": 1000,
+  "height": 800,
+  "title": "Average Watts per Ride",
+  "layer": [
+    {
+      "mark": { "type": "point", "color": "#777A81", "size": 1 },
+      "encoding": {
+        "x": {
+          "field": "Workout Timestamp",
+          "type": "temporal",
+          "title": "Date of Workout"
+        },
+        "y": {
+          "field": "avg_watts",
+          "type": "quantitative",
+          "title": "Average Watts"
+        },
+        "tooltip": [
+          { "field": "Workout Timestamp", "type": "nominal" },
+          { "field": "Total Output", "type": "quantitative" }
+        ],
+        "size": { "field": "Total Output", "type": "quantitative" }
+      }
+    },
+    {
+      "mark": { "type": "line", "color": "#FF3347" },
+      "transform": [
+        {
+          "regression": "avg_watts",
+          "on": "Workout Timestamp",
+          "method": "poly"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "Workout Timestamp",
+          "type": "temporal",
+          "title": "Date of Workout"
+        },
+        "y": {
+          "field": "avg_watts",
+          "type": "quantitative",
+          "title": "Average Watts"
+        }
+      }
+    }
+  ]
+}

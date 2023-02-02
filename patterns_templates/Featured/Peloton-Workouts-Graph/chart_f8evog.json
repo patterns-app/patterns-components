@@ -1,0 +1,15 @@
+{
+  "title": "Workouts Per Year",
+  "mark": "bar",
+  "color": "#FF3347",
+  "encoding": {
+    "x": { "field": "year", "type": "temporal", "title": "Year" },
+    "y": {
+      "field": "count_workouts",
+      "type": "quantitative",
+      "title": "Total Workouts"
+    },
+    "color": { "value": "#FF3347" },
+    "tooltip": { "field": "count_workouts", "type": "quantitative" }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "mark": {
+    "type": "point",
+    "color": "#FF3347",
+    "strokeWidth": 2
+  },
+  "encoding": {
+    "x": {
+      "field": "Total Output",
+      "type": "quantitative",
+      "title": "Total Output"
+    },
+    "y": {
+      "field": "Length (minutes)",
+      "type": "nominal",
+      "title": "Class Length"
+    },
+    "tooltip": { "field": "Total Output", "type": "quantitative" }
+  }
+}

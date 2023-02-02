@@ -1,0 +1,10 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bar Chart",
+  "mark": "line",
+  "encoding": {
+    "x": {"field": "timestamp", "type": "temporal", "axis": {"labelAngle": 45}},
+    "y": {"field": "close", "type": "quantitative"}, 
+    "color": {"field":"ticker"}
+  }
+}

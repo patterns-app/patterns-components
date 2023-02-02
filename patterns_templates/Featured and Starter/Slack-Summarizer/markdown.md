@@ -1,0 +1,1 @@
+Run :Node{#zgysrpm7} manually to import users before trying the bot

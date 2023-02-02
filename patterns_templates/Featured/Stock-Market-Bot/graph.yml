@@ -1,0 +1,112 @@
+dashboards:
+- id: ixvxai5w
+  items:
+  - id: 24xdrmle
+    node: 3pp3zoop
+    position:
+     height: 2
+     width: 3
+     x: 3
+     y: 0
+    type: chart
+  - id: oc5sc255
+    node: f7bmxdrg
+    position:
+     height: 2
+     width: 3
+     x: 0
+     y: 2
+    type: data
+  - id: xtyk64vf
+    node: oopyd7sv
+    position:
+     height: 2
+     width: 3
+     x: 0
+     y: 0
+    type: chart
+  title: asdf
+description_file: readme.md
+functions:
+- display:
+   x: 7
+   y: -1
+  id: 2jhxdpnn
+  node_file: generate_alerts.py
+  title: generate alerts
+- display:
+   x: 10
+   y: -1
+  id: 2kmsjeik
+  inputs:
+   messages: alert_stream
+  parameter_values:
+   message_template: "Alert!!! \n---\n{ticker} has returned {percent_return} in the\
+    \ past {week_ago} weeks. "
+   slack_webhook_url: ${{ slack_webhook_url }}
+  title: Post Message to Slack
+  uses: patterns/slack-post-message@v5
+- chart_input: daily_stocks
+  display:
+   height: 3
+   width: 5
+   x: 1
+   y: -5
+  id: 3pp3zoop
+  node_file: stocks.json
+  title: Stocks
+- display:
+   x: 4
+   y: -1
+  id: cnheew7a
+  node_file: calculate_horizon_returns.sql
+  outputs:
+   output_table: horizon_returns
+  title: calculate horizon returns
+- chart_input: horizon_returns
+  display:
+   height: 3
+   width: 5
+   x: 8
+   y: -5
+  id: oopyd7sv
+  node_file: historical_stock_returns_.json
+  title: Historical Stock Returns
+- display:
+   x: 1
+   y: -1
+  id: tcerv4vy
+  node_file: calculate_time_horizons.sql
+  outputs:
+   output_table: price_horizons
+  title: calculate time horizons
+- display:
+   x: -2
+   y: -1
+  id: vdacugek
+  node_file: import_stock_data2.py
+  parameter_values:
+   alphavantage_api_key: ${{ alphavantage_api_key }}
+  title: Import Stock Data
+stores:
+- display:
+   x: 2
+   y: -1
+  id: dz6nujel
+  table: price_horizons
+- display:
+   x: -1
+   y: -1
+  id: f7bmxdrg
+  table: daily_stocks
+- display:
+   x: 8
+   y: -1
+  id: j24oq5o3
+  table: alert_stream
+- display:
+   x: 5
+   y: -1
+  id: pfmgdsl6
+  table: horizon_returns
+title: Stock Market Bot

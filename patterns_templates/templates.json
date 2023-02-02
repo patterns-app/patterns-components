@@ -3,9 +3,9 @@
     "StableBot": "A slack bot that uses Stable Diffusion to create images from text prompts",
     "Slack-Summarizer": "A proof-of-concept GPT-3 slack bot that summarizes Slack channels in response to Slack @ mentions",
     "Fine-tune Q&A bot": "",
-    "CrunchBot": "",
+    "CrunchBot": "A slack bot that uses GTP-3 to generate SQL from free-form analytics texts",
     "Salesforce Classifier": "Use Patterns to fetch data from Salesforce, fine-tune an LLM with Cohere and finally classify Salesforce and upload those classifications back to Salesforce",
-    "RedditBot": "",
+    "RedditBot": "Template to create your own OpenAI subreddit newsletter",
     "Discord Search Bot": "",
     "HN Classifier": "This app classifies HackerNews story titles to determine their category and provide metrics on posting frequency and popularity"
   },
