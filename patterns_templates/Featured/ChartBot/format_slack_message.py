@@ -73,7 +73,7 @@ for result in data_results.as_stream():
         blocks.append(SectionBlock(text=result["sql_result"]["error"]))
     blocks.append(SectionBlock(text=format_sql(result["sql_result"]["sql"])))
     if result["sql_result"]["result"]:
-        blocks.append(SectionBlock(text=format_result_as_table(result["sql_result"]["result"])))
+        blocks.append(SectionBlock(text=format_result_as_table(result["sql_result"]["result"])[:3000]))
     response = slack.chat_postMessage(
         channel=channel or "C03J9KE9KE0",
         blocks=blocks,

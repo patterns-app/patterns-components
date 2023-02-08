@@ -15,7 +15,7 @@ functions:
   title: Ack message
 - display:
     x: 3
-    y: 4
+    y: 7
   id: 4zywjerc
   node_file: handle_sql_request.py
   parameter_values:
@@ -148,7 +148,7 @@ stores:
   table: chart_results
 - display:
     x: 2
-    y: 4
+    y: 7
   id: lysknsn5
   table: sql_requests
 - display:

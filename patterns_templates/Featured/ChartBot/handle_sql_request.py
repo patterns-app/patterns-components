@@ -16,17 +16,18 @@ api_key = connection.get("api_key")
 
 eng = sqlalchemy.create_engine("postgresql://hmncerbyrjbqdjbitxngwadg%40psql-mock-database-cloud:ptrznvhuauqxboycbnsybukx@psql-mock-database-cloud.postgres.database.azure.com:5432/ecom1675318299004vjaefbbelylvraob")
 
-extract_prompt = """Extract the SQL statement from the following:
+extract_prompt = """Reproduce the SQL statement from the following, exactly as written:
 
 {sql}
 
-```
+```sql
 """
 
 for request in sql_requests.as_stream():
     q = request["question"]
     resp = completion(extract_prompt.format(sql=q), api_key)
     sql = resp.json()["choices"][0]["text"].split("```")[0]
+    sql = sql.strip().strip("```")
     print(sql)
     qr = get_sql_result(eng, sql)
     request["sql_result"] = asdict(qr)
