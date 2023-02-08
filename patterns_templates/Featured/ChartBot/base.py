@@ -248,7 +248,7 @@ def plot_completion_pipeline(completions: list, api_key: str, data: list, query_
             break
     else:
         if pr.error:
-            pr = replace(qr, result = f"Stumped me. Here's the SQL I came up with but it had the following error: {qr.error}.")
+            pr = replace(pr, result = f"Stumped me. Here's the SQL I came up with but it had the following error: {qr.error}.")
         else:
-            pr = replace(qr, result=f"Stumped me. Here's the SQL I came up with but it didn't return a result.")
+            pr = replace(pr, result=f"Stumped me. Here's the SQL I came up with but it didn't return a result.")
     return pr
