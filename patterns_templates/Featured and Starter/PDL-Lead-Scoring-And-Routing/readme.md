@@ -1,6 +1,8 @@
 # Lead Enrichment, Scoring, and Routing
 
-This app powers sales, marketing, and growth teams with fast and accurate data about their leads. Clone this app, customize it, and integrate it with your marketing website and CRM to fully automate how you score, route, and prioritize leads. 
+This app powers sales, marketing, and growth teams with fast and accurate data about their leads using People Data Labs' Search API.
+
+Clone this app, customize it, and integrate it with your marketing website and CRM to fully automate how you score, route, and prioritize leads. 
 
 1. Ingest new leads via webhook
 2. Enrich lead emails with external data from People Data Labs
