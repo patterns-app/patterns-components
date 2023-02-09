@@ -1,6 +1,8 @@
 # Reddit LLM Newsletter
 
-Clone this graph to create your own reddit newsletter! You can use the forms to customize the subreddit, number of links and the email that recieves it.
+Clone this graph to create your own reddit newsletter using GPT3! 
+
+You can use the forms to customize the subreddit, number of links and the email that recieves it.
 You could also modify the gmail node to read from a table to support multiple subscribers!
 
 ## Connections
