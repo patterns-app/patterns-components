@@ -1,3 +1,4 @@
+description_file: README.md
 functions:
 - display:
     style: form
@@ -22,7 +23,7 @@ functions:
   outputs:
     reddit_comments: reddit_comments
   parameter_values:
-    links_to_scrape: '10'
+    links_to_scrape: '20'
     subreddit: finance
   title: Download Reddit Comments (with Titles)
 - description_file: readme_4.md
@@ -67,4 +68,4 @@ stores:
     y: 2
   id: zzqre2kq
   table: reddit_comments
-title: Summarization
+title: Reddit Summarization Newsletter
