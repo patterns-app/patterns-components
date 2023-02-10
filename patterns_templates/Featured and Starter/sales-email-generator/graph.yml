@@ -1,0 +1,66 @@
+description_file: readme.md
+functions:
+- description_file: generate_leads.md
+  display:
+   x: 5
+   y: 3
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/people_data_labs.svg
+  id: e3dozayl
+  node_file: generate_leads.py
+- display:
+   style: form
+   width: 2
+   x: 12
+   y: 3
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/gmail.svg
+  id: iokwlp4j
+  inputs:
+   drafts: completions
+  node_file: create_draft.py
+  parameter_values:
+   Sender Email: test@patterns.app
+  title: Create Draft
+- display:
+   height: 3
+   style: form
+   width: 2
+   x: 7
+   y: 2
+  id: lsl4rks3
+  node_file: dynamically_generate_prompts.py
+  outputs:
+   prompts: prompts
+  parameter_values:
+   Product Line: 'Patterns, a data pipelining platform, with a demo at patterns.app '
+   Sender Name: Calder
+  title: Dynamically Generate Prompts
+- description_file: readme_4.md
+  display:
+   x: 10
+   y: 3
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/openai.svg
+  id: uailjlhw
+  node_file: openai_gpt.py
+  outputs:
+   completions: completions
+  parameter_values:
+   max_tokens: 300
+   prompt_template: '{prompt}'
+  title: GPT Completion
+stores:
+- display:
+   x: 11
+   y: 3
+  id: 3u755glf
+  table: completions
+- display:
+   x: 6
+   y: 3
+  id: kuqflrxi
+  table: leads
+- display:
+   x: 9
+   y: 3
+  id: lgajjry7
+  table: prompts
+title: Sales Email Generation with People Data Labs + OpenAI
