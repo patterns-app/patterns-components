@@ -28,17 +28,17 @@ Data for table: {table.port_name}:
 
 def completion(prompt, api_key, **kwargs):
     params = {
-            "prompt": prompt,
-            "model": "text-davinci-003",
-            "max_tokens": 500,
-            "temperature": .8,
-        }
+        "prompt": prompt,
+        "model": "text-davinci-003",
+        "max_tokens": 500,
+        "temperature": 0.8,
+    }
     params.update(kwargs)
     # create a completion
     resp = requests.post(
         "https://api.openai.com/v1/completions",
         json=params,
-        headers={"Authorization": f"Bearer {api_key}"}
+        headers={"Authorization": f"Bearer {api_key}"},
     )
     resp = handle_rate_limiting(resp)
     if not resp.ok:
@@ -63,18 +63,18 @@ def get_sql_result(eng, sql: str, limit=50) -> QueryResult:
         for r in curs:
             result.append({k: v for k, v in zip(curs.keys(), r)})
             if len(result) >= limit:
-                break     
+                break
         print(result)
     except Exception as e:
         import traceback
+
         print(traceback.format_exc())
         print(e)
         try:
-            error = str(e.__dict__['orig'])
+            error = str(e.__dict__["orig"])
         except KeyError:
             error = str(e)
     return QueryResult(sql=sql, result=result, error=error)
-
 
 
 def double_check_query(sql: str, api_key: str, tables_summary: str) -> str:
@@ -135,7 +135,9 @@ The query above produced no result. Try rewriting the query so it will return re
     return {"original": query.sql, "corrected": corrected_sql}
 
 
-def sql_completion_pipeline(eng, completions: list, api_key: str, tables_summary: str, query_fixes) -> QueryResult:
+def sql_completion_pipeline(
+    eng, completions: list, api_key: str, tables_summary: str, query_fixes
+) -> QueryResult:
     for completion in completions:
         sql = completion["text"]
         corrected = double_check_query(sql, api_key, tables_summary)
@@ -154,9 +156,15 @@ def sql_completion_pipeline(eng, completions: list, api_key: str, tables_summary
             break
     else:
         if qr.error:
-            qr = replace(qr, result = f"Stumped me. Here's the SQL I came up with but it had the following error: {qr.error}.")
+            qr = replace(
+                qr,
+                result=f"Stumped me. Here's the SQL I came up with but it had the following error: {qr.error}.",
+            )
         else:
-            qr = replace(qr, result=f"Stumped me. Here's the SQL I came up with but it didn't return a result.")
+            qr = replace(
+                qr,
+                result=f"Stumped me. Here's the SQL I came up with but it didn't return a result.",
+            )
     return qr
 
 
@@ -178,18 +186,21 @@ def get_plot_result(py: str, data):
     error = None
     buf = io.BytesIO()
     result = None
+
     def get_data():
         return pd.DataFrame.from_records(data)
+
     try:
         exec(py, {"get_data": get_data})
-        
-        plt.savefig(buf, format='png')
+
+        plt.savefig(buf, format="png")
         buf.seek(0)
     except Exception as e:
         import traceback
+
         error = traceback.format_exc()
         print(error)
-    #if buf:
+    # if buf:
     #    result = base64.b64encode(buf.getvalue()).decode("utf-8").replace("\n", "")
     return PlotResult(python=py, result=buf, error=error)
 
@@ -231,11 +242,13 @@ records_df = get_data()
 pyplot_exec_prefix = "plt.style.use(plt.style.library['ggplot'])\n"
 
 
-def plot_completion_pipeline(completions: list, api_key: str, data: list, query_fixes) -> PlotResult:
+def plot_completion_pipeline(
+    completions: list, api_key: str, data: list, query_fixes
+) -> PlotResult:
     for completion in completions:
         py = completion["text"]
         py = py.split("```")[0]
-        py = pyplot_preamble + pyplot_exec_prefix +  py
+        py = pyplot_preamble + pyplot_exec_prefix + py
         pr = get_plot_result(py, data)
         if pr.error or not pr.result:
             # Try to fix error (just once for now)
@@ -248,7 +261,13 @@ def plot_completion_pipeline(completions: list, api_key: str, data: list, query_
             break
     else:
         if pr.error:
-            pr = replace(pr, result = f"Stumped me. Here's the SQL I came up with but it had the following error: {pr.error}.")
+            pr = replace(
+                pr,
+                result=f"Stumped me. Here's the SQL I came up with but it had the following error: {pr.error}.",
+            )
         else:
-            pr = replace(pr, result=f"Stumped me. Here's the SQL I came up with but it didn't return a result.")
+            pr = replace(
+                pr,
+                result=f"Stumped me. Here's the SQL I came up with but it didn't return a result.",
+            )
     return pr
