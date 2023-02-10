@@ -1,0 +1,110 @@
+description_file: readme.md
+functions:
+- description_file: readme_2.md
+  display:
+   x: 6
+   y: -1
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/slack.svg
+  id: esouxi5j
+  inputs:
+   messages: high_priority
+  node_file: send_message.py
+  parameter_values:
+   message_template: 'High-priority lead: {email}'
+  title: Send Message
+- display:
+   x: 6
+   y: 0
+  id: k6srqiad
+  inputs:
+   scored_leads: scored_leads
+  node_file: summarize_leads.sql
+  outputs:
+   output_table: lead_summary
+  title: Summarize leads
+- chart_input: lead_summary
+  display:
+   height: 2
+   width: 3
+   x: 8
+   y: -1
+  id: kwo5lvdw
+  node_file: lead_metrics.json
+  title: Lead Metrics
+- description_file: enrich_emails_with_people_data_labs2.md
+  display:
+   x: 2
+   y: -1
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/people_data_labs.svg
+  id: mpi2ctnn
+  inputs:
+   emails: emails
+  node_file: people_data_labs__person_search.py
+  outputs:
+   enriched_emails: enriched_emails
+  title: People Data Labs - Person Search
+- description_file: readme_3.md
+  display:
+   x: 6
+   y: 1
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/google-sheets.svg
+  id: skp3fxfz
+  inputs:
+   table: scored_leads
+  node_file: export_to_sheet.py
+  parameter_values:
+   connection: ${{ connection.google_sheets }}
+  title: Export to Sheet
+- display:
+   x: 0
+   y: -1
+  id: t7hilmto
+  title: webhook
+  webhook: emails
+- display:
+   x: 4
+   y: -1
+  id: wgglp3j7
+  node_file: score_leads.py
+  outputs:
+   high_priority: high_priority
+   scored_leads: scored_leads
+  title: Score leads
+stores:
+- display:
+   x: 3
+   y: -1
+  id: 2s3guhqo
+  table: enriched_emails
+- display:
+   x: 5
+   y: 0
+  id: aukb7c3y
+  table: scored_leads
+- display:
+   x: 3
+   y: 0
+  id: celvv2dd
+  table: errors
+- display:
+   x: 7
+   y: 0
+  id: pd6c2vja
+  table: lead_summary
+- display:
+   x: 1
+   y: -1
+  id: rkhffzt6
+  table: emails
+- display:
+   x: 5
+   y: -1
+  id: t72nva6c
+  table: high_priority
+tags:
+- app
+- tutorial
+- people-data-labs
+- slack
+- enrichment
+title: Lead Scoring and Routing

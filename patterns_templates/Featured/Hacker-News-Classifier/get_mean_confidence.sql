@@ -1,1 +1,0 @@
-select round(cast(avg(confidence) as numeric), 3) as avg from {{ Table("cohere_output2") }}

@@ -1,0 +1,11 @@
+{
+  "//documentation_url":  "https://vega.github.io/vega-lite/docs/",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bar Chart",
+  "mark": "line",
+  "encoding": {
+    "x": {"field": "month", "type": "nominal", "axis": {"labelAngle": 0}},
+    "y": {"field": "lead_count", "type": "quantitative"}
+  }
+}
+
