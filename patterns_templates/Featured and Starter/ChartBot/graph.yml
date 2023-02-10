@@ -172,3 +172,4 @@ stores:
   id: u4uzx3lq
   table: chart_sql_results
 title: ChartBot
+description_file: readme.md
