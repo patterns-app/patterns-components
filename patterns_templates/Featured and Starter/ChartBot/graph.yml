@@ -1,0 +1,175 @@
+dashboards:
+- id: 6v2w6iil
+  title: asdf
+functions:
+- display:
+   x: -1
+   y: 4
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/slack.svg
+  id: 3ilxlq5x
+  inputs:
+   questions: mentions
+  node_file: ack_message.py
+  parameter_values:
+   slackbot_connection: ${{ connection.slackbot_3 }}
+  title: Ack message
+- display:
+   x: 3
+   y: 7
+  id: 4zywjerc
+  node_file: handle_sql_request.py
+  parameter_values:
+   connection: ${{ connection.openai_2 }}
+  title: Handle SQL request
+- display:
+   x: 7
+   y: 5
+  id: 6i6gkmnv
+  node_file: format_slack_message.py
+  parameter_values:
+   slack: ${{ connection.slackbot_3 }}
+  title: Format slack message
+- display:
+   x: 3
+   y: 5
+  id: aoemgcyq
+  node_file: handle_chart_request.py
+  outputs:
+   chart_sql_results: chart_sql_results
+  parameter_values:
+   connection: ${{ connection.openai_2 }}
+  title: Handle chart request
+- display:
+   x: 1
+   y: 5
+  id: cp2yq7of
+  node_file: route_question.py
+  outputs:
+   chart_requests: chart_requests
+   data_requests: data_requests
+   sql_requests: sql_requests
+  parameter_values:
+   connection: ${{ connection.openai_2 }}
+  title: Route question
+- display:
+   style: form
+   width: 3
+   x: -3
+   y: 6
+  id: e3j63oxz
+  node_file: manual_question.py
+  parameter_values:
+   Question: show me a chart of monthly new customers
+  title: Manual question
+- display:
+   x: 5
+   y: 5
+  id: f2hca2x4
+  node_file: make_plot.py
+  parameter_values:
+   aws_secret: ${{ aws_secret }}
+   connection: ${{ connection.openai_2 }}
+   slack: ${{ connection.slackbot_2 }}
+  title: Make plot
+- display:
+   x: 0
+   y: 3
+  id: ncgeh6ug
+  node_file: python.py
+  outputs:
+   schemas: schemas
+- display:
+   x: 0
+   y: 8
+  id: sgvkdca4
+  node_file: scratch.py
+  parameter_values:
+   aws_secret: ${{ aws_secret }}
+   slack: ${{ connection.slackbot_2 }}
+  title: Scratch
+- display:
+   x: -1
+   y: 5
+  id: svl4za5s
+  node_file: format_mention.py
+  outputs:
+   questions: questions
+  title: Format mention
+- display:
+   x: -3
+   y: 5
+  id: x6vvfchf
+  title: Slack questions
+  webhook: mentions
+- display:
+   x: 3
+   y: 6
+  id: xzdt2dpq
+  node_file: handle_data_request.py
+  outputs:
+   data_results: data_results
+   query_fixes: query_fixes
+  parameter_values:
+   connection: ${{ connection.openai_2 }}
+  title: Handle data request
+storages:
+- database: Default_ro
+  definition: Default
+  engines:
+  - postgres
+  namespace:
+  - public
+  read_only: true
+stores:
+- display:
+   x: 2
+   y: 6
+  id: 7pldg7ei
+  table: data_requests
+- display:
+   x: 0
+   y: 5
+  id: 7sedx6fc
+  table: questions
+- display:
+   x: 2
+   y: 5
+  id: eepe7kns
+  table: chart_requests
+- display:
+   x: 1
+   y: 3
+  id: h6eudt2a
+  table: schemas
+- display:
+   x: 6
+   y: 5
+  id: lrkkaxq3
+  table: chart_results
+- display:
+   x: 2
+   y: 7
+  id: lysknsn5
+  table: sql_requests
+- display:
+   x: 4
+   y: 6
+  id: msz4kf4t
+  table: data_results
+- display:
+   x: 6
+   y: 7
+  id: oz5mhglh
+  table: query_fixes
+- display:
+   x: -2
+   y: 5
+  id: rqw62cxu
+  table: mentions
+- display:
+   x: 4
+   y: 5
+  id: u4uzx3lq
+  table: chart_sql_results
+title: ChartBot
+description_file: readme.md
