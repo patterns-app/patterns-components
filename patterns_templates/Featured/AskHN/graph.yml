@@ -1,0 +1,203 @@
+description_file: readme.md
+functions:
+  - display:
+      x: 5
+      y: 2
+    id: 2eqpaayb
+    node_file: configure_discord_command.py
+    parameter_values:
+      discord_app_id: ${{ discord_app_id }}
+    title: Configure Discord command
+  - display:
+      x: 9
+      y: 4
+    id: 3v3i3qlk
+    node_file: query_embeddings.py
+    outputs:
+      discord_hits: discord_hits
+    parameter_values:
+      openai_api_key: ${{ connection.openai }}
+      pinecone_api_key: ${{ pinecone_api_key }}
+    title: Query embeddings
+  - display:
+      x: 8
+      y: 5
+    id: abazv45u
+    node_file: compute_embeddings.py
+    parameter_values:
+      openai_api_key: ${{ connection.openai }}
+      pinecone_api_key: ${{ pinecone_api_key }}
+    title: Compute embeddings
+  - display:
+      x: 3
+      y: 5
+    id: cdxzoviv
+    node_file: sample.sql
+    outputs:
+      output_table: sample
+    title: Sample
+  - display:
+      x: 1
+      y: 5
+    id: fjxahdrk
+    node_file: filter_stories.sql
+    outputs:
+      output_table: top_stories
+    title: Filter stories
+  - chart_input: items_by_month
+    display:
+      height: 2
+      width: 3
+      x: 8
+      y: 7
+    id: gpiropet
+    node_file: hn_items_by_month.json
+    title: HN items by month
+  - display:
+      x: 6
+      y: 7
+    id: joe473ev
+    node_file: items_over_time.sql
+    outputs:
+      output_table: items_by_month
+    title: Items over time
+  - display:
+      x: 1
+      y: 4
+    id: k6t6tbir
+    node_file: filter_comments.sql
+    outputs:
+      output_table: top_comments
+    title: Filter comments
+  - display:
+      x: 7
+      y: 3
+    id: mujqkhku
+    node_file: rate_limit_messages.py
+    outputs:
+      bounces: bounces
+      discord_messages_filtered: discord_messages_filtered
+    title: Rate limit messages
+  - display:
+      x: 9
+      y: 2
+    id: qdn6lp4i
+    node_file: update_discord__bounce.py
+    title: Update Discord - Bounce
+  - display:
+      x: 5
+      y: 3
+    id: syuc33qu
+    parameter_values:
+      APPLICATION_PUBLIC_KEY: ${{ discord_application_public_key }}
+    title: Incoming Discord Messages
+    webhook: discord_messages
+  - display:
+      x: 6
+      y: 5
+    id: tvi53bwm
+    node_file: prepare_documents.py
+    title: Prepare documents
+  - display:
+      x: 13
+      y: 4
+    id: vfuecyaz
+    node_file: update_discord__response.py
+    title: Update Discord - Response
+  - display:
+      x: 9
+      y: 3
+    id: yjwjkqgk
+    node_file: update_discord__working.py
+    title: Update Discord - Working
+  - display:
+      x: 1
+      y: 7
+    id: ynxmn5fk
+    node_file: hn_sample.py
+    outputs:
+      hn_data_import: hn_data_import
+    title: HN sample
+  - display:
+      x: 11
+      y: 4
+    id: zqf6pd5i
+    node_file: summarize.py
+    outputs:
+      responses: responses
+    parameter_values:
+      openai_api_key: ${{ connection.openai }}
+      pinecone_api_key: ${{ pinecone_api_key }}
+    title: Summarize
+requirements_file: requirements.txt
+storages:
+  - database: Default_ro
+    definition: Default
+    engines:
+      - postgres
+    namespace:
+      - public
+    read_only: true
+stores:
+  - display:
+      x: 10
+      y: 4
+    id: 2i2idpka
+    table: discord_hits
+  - display:
+      x: 8
+      y: 3
+    id: 7pibenih
+    table: discord_messages_filtered
+  - display:
+      x: 0
+      y: 5
+    id: e4flqosg
+    storage: Default_ro
+    table: hn_items
+  - display:
+      x: 2
+      y: 5
+    id: ekn6kx4j
+    table: top_stories
+  - display:
+      x: 7
+      y: 5
+    id: lmadlpnk
+    table: docs
+  - display:
+      x: 7
+      y: 7
+    id: mobrx6gj
+    table: items_by_month
+  - display:
+      x: 4
+      y: 5
+    id: my2y7zzd
+    table: sample
+  - display:
+      x: 8
+      y: 2
+    id: pt26btbq
+    table: bounces
+  - display:
+      x: 2
+      y: 4
+    id: pu2s4c2g
+    table: top_comments
+  - display:
+      x: 12
+      y: 4
+    id: v544szpj
+    table: responses
+  - display:
+      x: 2
+      y: 7
+    id: vc7rcwbz
+    table: hn_data_import
+  - display:
+      x: 6
+      y: 3
+    id: w2cg3w3n
+    table: discord_messages
+title: Ask HN Bot

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "mark": {"type": "bar", "tooltip": true},
+  "encoding": {
+    "x": {"field": "month", "type": "temporal", "axis": {"labelAngle": 0}},
+    "y": {"field": "count", "type": "quantitative"}
+  }
+}
