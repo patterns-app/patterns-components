@@ -33,6 +33,8 @@ OpenAI completion.
 In Slack, @mention your bot and say something like, "I need help with my code.".  You should see the graph
 nodes execute in sequence, and the bot should respond with a GPT-3 generated response.
 
+> Note, for this to work with these permissions you need to mention and the add the bot to a specific channel. A private DM will not work.
+
 ## More Information
 Check out [intro to streaming and webhooks](https://www.patterns.app/docs/dev/streams) or the
 [python reference](https://www.patterns.app/docs/reference/python-reference) in the docs

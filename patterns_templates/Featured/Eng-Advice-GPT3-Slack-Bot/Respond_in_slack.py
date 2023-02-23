@@ -11,7 +11,7 @@ for c in completions.as_stream().consume_records():
         "https://slack.com/api/chat.postMessage",
         json={
             "text": c["completion"],
-            "channel": c["record"]["slack_channel"],
+            "channel": c["slack_channel"],
         },
         headers={"Authorization": f"Bearer {slack['token']}"},
     ).raise_for_status()
