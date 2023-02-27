@@ -8,7 +8,8 @@ docs:
   id: uqfv53a4
   markdown_file: markdown.md
 functions:
-- display:
+- description_file: algolia_search.md
+  display:
     x: 5
     y: 2
   icon_url: https://cdn-icons-png.flaticon.com/512/5969/5969003.png
@@ -18,7 +19,8 @@ functions:
     algolia_api_key: c6dd396e807e52c6b6a73c9baa147e71
     algolia_app_id: CFHWXAADED
     algolia_index: documentation-test
-- display:
+- description_file: text_complete.md
+  display:
     x: 7
     y: 2
   icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/openai.svg
