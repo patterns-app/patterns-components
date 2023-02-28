@@ -1,0 +1,222 @@
+description_file: description.md
+docs:
+- display:
+   height: 2
+   width: 3
+   x: 13
+   y: 2
+  id: 5qg6ojs2
+  markdown_file: test_it_out.md
+functions:
+- description_file: get_github_repo_issues.md
+  display:
+   x: 6
+   y: 3
+  id: 5gm67t4w
+  node_file: get_github_repo_issues.py
+  parameter_values:
+   github_owner_username: samnickolay
+   github_repo_slug: G-Code-Visualizer-and-Editor
+   github_token: ${{ github_token }}
+  title: get github repo issues
+- description_file: parse_sitemap.md
+  display:
+   x: 6
+   y: 2
+  id: akl3gegx
+  node_file: parse_sitemap.py
+  outputs:
+   sitemap_urls: sitemapurls
+  parameter_values:
+   sitmap_url: https://reactflow.dev/sitemap.xml
+  title: parse sitemap
+- display:
+   x: 14
+   y: 0
+  id: arxszeha
+  node_file: update_webhook_response.py
+  title: update webhook response
+- description_file: au46ayfr.md
+  display:
+   x: 8
+   y: 0
+  id: au46ayfr
+  parameter_values:
+   APPLICATION_PUBLIC_KEY: ${{ APPLICATION_PUBLIC_KEY }}
+  title: Discord Webhook
+  webhook: webhook
+- display:
+   x: 12
+   y: 0
+  id: d3kirmsk
+  node_file: find_matching_messages.py
+  outputs:
+   all_relevant_records: allrelevantrecords
+   most_relevant_records: most_relevant_records
+  parameter_values:
+   connection: ${{ connection.openai }}
+  title: find matching messages
+- display:
+   x: 10
+   y: 0
+  id: k5bi6l7z
+  node_file: extract_search_text.py
+  title: extract search text
+- display:
+   x: 8
+   y: 1
+  id: k5vx4axz
+  node_file: get_channel_messages.py
+  parameter_values:
+   discord_bot_token: ${{ discord_bot_token }}
+  title: get channel messages
+- display:
+   x: 8
+   y: 3
+  id: o6ozzrej
+  node_file: scrape_issues.py
+  outputs:
+   github_issues_text: github_issues_text
+  title: scrape issues
+- description_file: readme.md
+  display:
+   x: 10
+   y: 2
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/openai.svg
+  id: qgmaykcl
+  inputs:
+   input_texts: pagestexts
+  node_file: generate_text_embeddings__website.py
+  outputs:
+   embeddings: docs_embeddings
+  parameter_values:
+   connection: ${{ connection.openai }}
+   record_field_to_embed: page_text
+  title: Generate Text Embeddings - Website
+- description_file: setup_discord_command.md
+  display:
+   x: 7
+   y: 0
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/discord.svg
+  id: rxxxe6ou
+  node_file: configure_discord_search_command.py
+  parameter_values:
+   application_id: '1073660632584437930'
+   discord_bot_token: ${{ discord_bot_token }}
+  title: Configure Discord search command
+- display:
+   x: 10
+   y: 1
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/openai.svg
+  id: udtlojl6
+  inputs:
+   input_texts: messages_table
+  node_file: generate_text_embeddings__discord.py
+  outputs:
+   embeddings: discord_embeddings
+  parameter_values:
+   connection: ${{ connection.openai }}
+   record_field_to_embed: content
+  title: Generate Text Embeddings - Discord
+- display:
+   x: 8
+   y: 2
+  id: ui2vd6i4
+  inputs:
+   sitemap_urls: sitemapurls
+  node_file: scrape_urls.py
+  outputs:
+   pages_texts: pagestexts
+  title: scrape urls
+- description_file: get_server_channels.md
+  display:
+   x: 6
+   y: 1
+  id: yrvu6my5
+  node_file: get_server_channels.py
+  parameter_values:
+   discord_bot_token: ${{ discord_bot_token }}
+   discord_server_id: '1062086264112816179'
+  title: get server channels
+- description_file: readme_2.md
+  display:
+   x: 10
+   y: 3
+  icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/openai.svg
+  id: yurgh7ar
+  inputs:
+   input_texts: github_issues_text
+  node_file: generate_text_embeddings__issues.py
+  outputs:
+   embeddings: issues_embeddings
+  parameter_values:
+   connection: ${{ connection.openai }}
+   record_field_to_embed: text
+  title: Generate Text Embeddings - Issues
+stores:
+- display:
+   x: 9
+   y: 0
+  id: 6v5ia3jp
+  table: webhook
+- display:
+   x: 11
+   y: 3
+  id: aj7ntfv3
+  table: issues_embeddings
+- display:
+   x: 13
+   y: 0
+  id: dbqbfu3p
+  table: most_relevant_records
+- display:
+   x: 7
+   y: 1
+  id: dpo3x3fs
+  table: channel_table
+- display:
+   x: 9
+   y: 2
+  id: hjlvz7o7
+  table: pagestexts
+- display:
+   x: 13
+   y: 1
+  id: jyspxhax
+  table: allrelevantrecords
+- display:
+   x: 11
+   y: 0
+  id: m7vc47rm
+  table: search_text
+- display:
+   x: 7
+   y: 2
+  id: malyfbcl
+  table: sitemapurls
+- display:
+   x: 11
+   y: 2
+  id: tfz6ew6k
+  table: docs_embeddings
+- display:
+   x: 9
+   y: 1
+  id: uyn56dek
+  table: messages_table
+- display:
+   x: 11
+   y: 1
+  id: x2ue3fws
+  table: discord_embeddings
+- display:
+   x: 9
+   y: 3
+  id: xoljommp
+  table: github_issues_text
+- display:
+   x: 7
+   y: 3
+  id: ydqykvrb
+  table: github_repo_issues
+title: Discord Search with OpenAI embed
