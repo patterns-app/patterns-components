@@ -1,84 +1,84 @@
 description_file: readme.md
 docs:
 - display:
-    height: 2
-    width: 3
-    x: 1
-    y: 0
+   height: 2
+   width: 3
+   x: 1
+   y: 0
   id: uqfv53a4
   markdown_file: markdown.md
 functions:
 - description_file: algolia_search.md
   display:
-    x: 5
-    y: 2
+   x: 5
+   y: 2
   icon_url: https://cdn-icons-png.flaticon.com/512/5969/5969003.png
   id: 2zrw76lg
   node_file: algolia_search.py
   parameter_values:
-    algolia_api_key: c6dd396e807e52c6b6a73c9baa147e71
-    algolia_app_id: CFHWXAADED
-    algolia_index: documentation-test
+   algolia_api_key: c6dd396e807e52c6b6a73c9baa147e71
+   algolia_app_id: CFHWXAADED
+   algolia_index: documentation-test
 - description_file: text_complete.md
   display:
-    x: 7
-    y: 2
+   x: 7
+   y: 2
   icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/openai.svg
   id: emxnhuad
   node_file: text_complete.py
   outputs:
-    completions: completions
+   completions: completions
   parameter_values:
-    open_ai_api_key: ${{ open_ai_api_key }}
+   open_ai_api_key: ${{ open_ai_api_key }}
 - description_file: readme_3.md
   display:
-    x: 9
-    y: 2
+   x: 9
+   y: 2
   icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/slack.svg
   id: nzz4xrip
   inputs:
-    completions: completions
+   completions: completions
   node_file: send_message.py
   parameter_values:
-    slackbot: ${{ connection.patterns_helpdesk }}
+   slackbot: ${{ connection.patterns_helpdesk }}
   title: Send Message
 - description_file: readme_2.md
   display:
-    x: 1
-    y: 2
+   x: 1
+   y: 2
   icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/slack.svg
   id: vgi2t74o
   title: Slack Messages
   webhook: messages
 - display:
-    x: 3
-    y: 2
+   x: 3
+   y: 2
   id: xfedeget
   inputs:
-    slack_messages: messages
+   slack_messages: messages
   node_file: parse_responses.py
   parameter_values:
-    slackbot: ${{ connection.patterns_helpdesk }}
+   slackbot: ${{ connection.patterns_helpdesk }}
 requirements_file: requirements.txt
 stores:
 - display:
-    x: 6
-    y: 2
+   x: 6
+   y: 2
   id: 6mb2dih6
   table: search_results
 - display:
-    x: 8
-    y: 2
+   x: 8
+   y: 2
   id: clu3lhp3
   table: completions
 - display:
-    x: 4
-    y: 2
+   x: 4
+   y: 2
   id: wpdtomq2
   table: questions
 - display:
-    x: 2
-    y: 2
+   x: 2
+   y: 2
   id: zdp3m2to
   table: messages
 title: Algolia GPT-3 Slackbot

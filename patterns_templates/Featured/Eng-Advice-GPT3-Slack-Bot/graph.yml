@@ -1,56 +1,56 @@
 description_file: readme.md
 functions:
 - display:
-    x: 3
-    y: 0
+   x: 3
+   y: 0
   icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/slack.svg
   id: 6i3qvdjc
   node_file: Respond_in_slack.py
   parameter_values:
-    slackbot: null
+   slackbot:
   title: Respond in Slack
 - description_file: readme_3.md
   display:
-    x: 1
-    y: 0
+   x: 1
+   y: 0
   icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/openai.svg
   id: cdor7k2t
   node_file: openai_gpt.py
   outputs:
-    completions: completions
+   completions: completions
   title: GPT Completion
 - description_file: readme_2.md
   display:
-    x: -3
-    y: 0
+   x: -3
+   y: 0
   icon_url: https://storage.googleapis.com/patterns-public-images/template-icons/slack.svg
   id: fbwuylpa
   title: Slack Messages
   webhook: mentions
 - display:
-    x: -1
-    y: 0
+   x: -1
+   y: 0
   id: riy4ncew
   inputs:
-    mentions: mentions
+   mentions: mentions
   node_file: turn_mention_into_prompt.py
   outputs:
-    prompts: prompts
+   prompts: prompts
   title: Turn Mention into Prompt
 stores:
 - display:
-    x: 0
-    y: 0
+   x: 0
+   y: 0
   id: 4tr2pdjb
   table: prompts
 - display:
-    x: 2
-    y: 0
+   x: 2
+   y: 0
   id: nhpwhwky
   table: completions
 - display:
-    x: -2
-    y: 0
+   x: -2
+   y: 0
   id: sshaai4y
   table: mentions
 title: Eng Advice GPT3 Slack Bot
