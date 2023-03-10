@@ -7,7 +7,6 @@ from typing import Any, Callable
 
 from dateutil import parser
 from dateutil.parser import ParserError
-from dcp.utils.common import utcnow
 from requests import Request, Response, Session
 from requests.auth import HTTPBasicAuth
 
@@ -28,7 +27,7 @@ def _parse_header_future_time_seconds(v: str | int | float) -> int | float | Non
         dt = parser.parse(v)
         if dt.tzinfo is None:
             dt = dt.replace(tzinfo=timezone.utc)
-        seconds = max((dt - utcnow()).total_seconds(), 0)
+        seconds = max((dt - datetime.now(tz=timezone.utc)).total_seconds(), 0)
         return seconds
     except ParserError:
         pass

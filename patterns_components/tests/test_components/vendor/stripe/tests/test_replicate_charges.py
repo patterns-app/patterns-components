@@ -1,9 +1,6 @@
-from datetime import timedelta
+from datetime import timedelta, datetime, timezone
 
 import requests_mock
-from dcp.utils.common import utcnow
-
-from patterns_components.tests.mock_api import MockOutputTable, MockState
 
 from patterns_components.components.vendor.stripe.replication.base import (
     make_object_url,
@@ -11,6 +8,7 @@ from patterns_components.components.vendor.stripe.replication.base import (
     current_starting_after_state_key,
     latest_full_import_state_key,
 )
+from patterns_components.tests.mock_api import MockOutputTable, MockState
 
 
 def test_replicate_charges():
@@ -37,7 +35,7 @@ def test_replicate_charges():
     assert len(output_table.get_test_records()) == 2
     assert state.state[current_starting_after_state_key("charges")] is None
     latest_import1 = state.state[latest_full_import_state_key("charges")]
-    assert utcnow() - latest_import1 < timedelta(seconds=1)
+    assert datetime.now(tz=timezone.utc) - latest_import1 < timedelta(seconds=1)
 
     # Run again and make sure "full import" state is handled correctly
     output_table2 = MockOutputTable()

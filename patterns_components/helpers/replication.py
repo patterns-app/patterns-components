@@ -4,11 +4,10 @@ import os
 import pprint
 import time
 from dataclasses import dataclass, replace
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta, date, timezone
 from typing import Callable, TypeVar, Generic, Any, Tuple, Sequence
 
 from dateutil.parser import parser, ParserError
-from dcp.utils.common import utcnow, title_to_snake_case
 from patterns import *
 from requests import Request, Session, Response, PreparedRequest
 from requests.auth import HTTPBasicAuth
@@ -66,7 +65,7 @@ def _parse_retry_after(retry_after: str) -> float | int | None:
         pass
     try:
         dt = parser.parse(retry_after)
-        seconds = (dt - utcnow()).total_seconds()
+        seconds = (dt - datetime.now(tz=timezone.utc)).total_seconds()
         return seconds
     except ParserError:
         pass
@@ -361,7 +360,32 @@ def use_handle_retry_wait_on_status_codes(
 
 
 def transform_keys_snake_case(r: dict) -> dict:
-    return {title_to_snake_case(k): v for k, v in r.items()}
+    return {_title_to_snake_case(k): v for k, v in r.items()}
+
+
+def _title_to_snake_case(s: str) -> str:
+    chars = []
+    for i in range(1, len(s)):
+        if s[i - 1].islower() and s[i].isupper():
+            # "aCamel"
+            chars.append(s[i - 1] + "_")
+        elif (
+            s[i - 1].isupper()
+            and s[i].isupper()
+            and i < len(s) - 1
+            and s[i + 1].islower()
+        ):
+            # "ATitle"
+            chars.append(s[i - 1] + "_")
+        elif s[i - 1].isnumeric() != s[i].isnumeric() and (
+            s[i - 1].isalpha() or s[i].isupper()
+        ):
+            # "This98That"
+            chars.append(s[i - 1] + "_")
+        else:
+            chars.append(s[i - 1])
+    chars.append(s[-1])
+    return "".join(chars).lower()
 
 
 def use_extract_records_from_field(
@@ -447,7 +471,7 @@ def full_replication_manager(
         importer: ObjectImporter, istate: dict, backfill: bool = False
     ) -> bool:
         print(f"Replicating {importer.key}")
-        istate["exe_start_at"] = utcnow()
+        istate["exe_start_at"] = datetime.now(tz=timezone.utc)
         set_importer_state(importer, istate)
 
         try:
@@ -458,7 +482,7 @@ def full_replication_manager(
             handle_exception(state, importer, e)
 
         istate["exe_status"] = "success" if success else "incomplete"
-        istate["exe_done_at"] = utcnow()
+        istate["exe_done_at"] = datetime.now(tz=timezone.utc)
         set_importer_state(importer, istate)
         if not success:
             # We timed out, exit
@@ -485,7 +509,7 @@ def full_replication_manager(
         if istate["exe_status"] != "success":
             continue
         if (
-            utcnow() - istate["exe_done_at"]
+            datetime.now(tz=timezone.utc) - istate["exe_done_at"]
         ).total_seconds() < min_wait_after_successful_completion_seconds:
             continue
         run_importer(importer, istate)

@@ -1,7 +1,6 @@
-from datetime import timedelta
+from datetime import timedelta, timezone, datetime
 
 import requests_mock
-from dcp.utils.common import utcnow
 
 from patterns_components.tests.mock_api import MockOutputTable, MockState
 
@@ -46,4 +45,4 @@ def test_import_subscription_items():
     assert len(items_table.get_test_records()) == 2 * 3  # 2 subs with 3 items each
     assert state.state[current_starting_after_state_key("subscriptions")] is None
     latest_import1 = state.state[latest_full_import_state_key("subscriptions")]
-    assert utcnow() - latest_import1 < timedelta(seconds=1)
+    assert datetime.now(tz=timezone.utc) - latest_import1 < timedelta(seconds=1)
