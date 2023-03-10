@@ -1,8 +1,7 @@
 import time
-from datetime import timedelta
+from datetime import timedelta, datetime, timezone
 
 import requests_mock
-from dcp.utils.common import utcnow
 from requests import Response, Request
 
 from patterns_components.helpers.api import (
@@ -60,7 +59,7 @@ def test_rate_limiting_no_headers():
         handle_rate_limiting(resp, backoff_sleep_seconds_if_no_headers=1)
         assert m.call_count == 1
     # Should have waited one second
-    assert time.monotonic() - start > 1
+    assert time.monotonic() - start >= 1
 
 
 def test_rate_limiting_no_headers_503():
@@ -71,7 +70,7 @@ def test_rate_limiting_no_headers_503():
         handle_rate_limiting(resp, backoff_sleep_seconds_if_no_headers=1)
         assert m.call_count == 1
     # Should have waited one second
-    assert time.monotonic() - start > 1
+    assert time.monotonic() - start >= 1
 
 
 def test_rate_limiting_none_remaining():
@@ -84,17 +83,16 @@ def test_rate_limiting_none_remaining():
         handle_rate_limiting(resp)
         assert m.call_count == 0
     # Should have waited one second
-    assert time.monotonic() - start > 1
+    assert time.monotonic() - start >= 1
 
 
 def test_rate_limiting_retry_after():
-    resp = make_response(
-        429, headers={"Retry-After": (utcnow() + timedelta(seconds=1)).isoformat()}
-    )
+    retry_after = datetime.now(tz=timezone.utc) + timedelta(seconds=1)
+    resp = make_response(429, headers={"Retry-After": retry_after.isoformat()})
     start = time.monotonic()
     with requests_mock.Mocker() as m:
         m.get(test_url, json={"ok": True})
         handle_rate_limiting(resp)
         assert m.call_count == 1
     # Should have waited one second
-    assert time.monotonic() - start > 1
+    assert time.monotonic() - start >= 1

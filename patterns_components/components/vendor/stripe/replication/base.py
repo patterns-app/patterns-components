@@ -1,11 +1,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
-from datetime import timedelta, datetime
+from datetime import timedelta, datetime, timezone
 from typing import Tuple
 
-from dcp.utils.common import utcnow
-from patterns import Stream, State, Table
+from patterns import State, Table
 from requests import Request
 
 from patterns_components.helpers.replication import (
@@ -133,7 +132,9 @@ def import_stripe_records(
         write_records=write_records,
     )
     if finished:
-        state.set_value(latest_full_import_state_key(cfg.object_type), utcnow())
+        state.set_value(
+            latest_full_import_state_key(cfg.object_type), datetime.now(tz=timezone.utc)
+        )
         # IMPORTANT: we reset the starting after cursor so we start from the beginning again on next run
         state.set_value(current_starting_after_state_key(cfg.object_type), None)
     return finished

@@ -9,19 +9,15 @@ from pathlib import Path
 from types import ModuleType
 from typing import Iterator
 
-from commonmodel import Schema
-from dcp import Storage
-from dcp.utils.common import ensure_datetime, utcnow
-
 
 @dataclass
 class MockTableVersion:
     name: str
-    storage: Storage
-    schema: Schema | None = None
+    storage: str
+    schema = None
     _records: list[dict] = None
 
-    def set_schema(self, schema: Schema):
+    def set_schema(self, schema):
         self.schema = schema
 
     @property
@@ -38,9 +34,9 @@ class MockIoBase:
         self._records = records
         self._name = name
         self.table = MockTableVersion(
-            name=self._name, storage=Storage("python://_test"), _records=self._records
+            name=self._name, storage="python://_test", _records=self._records
         )
-        self.schemas: dict[str, Schema] = {}
+        self.schemas = {}
         for k, v in kwargs.items():
             setattr(self, k, v)
 
@@ -62,7 +58,7 @@ class MockIoBase:
 
     def create_new_version(self) -> MockTableVersion:
         return self.table or MockTableVersion(
-            name=self._name, storage=Storage("python://_output_test")
+            name=self._name, storage="python://_output_test"
         )
 
     @property
@@ -72,7 +68,7 @@ class MockIoBase:
         return self.table.name
 
     @property
-    def storage(self) -> Storage:
+    def storage(self) -> str:
         return self.table.storage
 
     @property
@@ -250,7 +246,7 @@ class MockState:
         pass
 
     def get_datetime(self, k, d=None):
-        return ensure_datetime(self.get_value(k, d))
+        return self.get_value(k, d)
 
 
 @dataclass
