@@ -74,6 +74,17 @@ def test_rate_limiting_no_headers_503():
     assert time.monotonic() - start > 1
 
 
+def test_rate_limiting_no_headers_500():
+    resp = make_response(500)
+    start = time.monotonic()
+    with requests_mock.Mocker() as m:
+        m.get(test_url, json={"ok": True})
+        handle_rate_limiting(resp, backoff_sleep_seconds_if_no_headers=1)
+        assert m.call_count == 1
+    # Should have waited one second
+    assert time.monotonic() - start > 1
+
+
 def test_rate_limiting_none_remaining():
     resp = make_response(
         200, headers={"X-RateLimit-Remaining": 0, "X-RateLimit-Reset": 1}

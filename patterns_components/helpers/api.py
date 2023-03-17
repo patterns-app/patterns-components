@@ -81,9 +81,9 @@ def parse_rate_limit_headers(headers: dict) -> RateLimitHeaders:
     return headers
 
 
-def handle_rate_limiting(
+def handle_retries(
     resp: Response,
-    retry_status_codes: list[int] = None,
+    retry_status_codes: set[int] = None,
     session: Session = None,
     backoff_sleep_seconds_if_no_headers: int = 5,
     max_backoff_attempts: int = 5,
@@ -96,7 +96,7 @@ def handle_rate_limiting(
 
     Args:
         resp: requests Response object
-        retry_status_codes: [429, 503] by default
+        retry_status_codes: [429, 500-599] by default
         session: optional requests Session object, recommended for efficiency
         backoff_sleep_seconds_if_no_headers: starting seconds to sleep in backoff
         max_backoff_attempts: will abort after this many attempts
@@ -115,7 +115,10 @@ def handle_rate_limiting(
             logger(f"Retrying request")
         return sess.send(resp.request)
 
-    retry_status_codes = retry_status_codes or [429, 503]
+    if not retry_status_codes:
+        retry_status_codes = set(range(500, 600))
+        retry_status_codes.add(429)
+
     ratelimit_headers = parse_rate_limit_headers(resp.headers)
     if resp.status_code in retry_status_codes:
         # Display error to user
@@ -154,6 +157,24 @@ def handle_rate_limiting(
     ):
         _sleep(ratelimit_headers.seconds_until_reset, "Rate-limit reset header found")
     return resp
+
+
+def handle_rate_limiting(
+    resp: Response,
+    retry_status_codes: list[int] = None,
+    session: Session = None,
+    backoff_sleep_seconds_if_no_headers: int = 5,
+    max_backoff_attempts: int = 5,
+    logger: Callable[[str], None] | None = print,
+) -> Response:
+    return handle_retries(
+        resp=resp,
+        retry_status_codes=set(retry_status_codes) if retry_status_codes else None,
+        session=session,
+        backoff_sleep_seconds_if_no_headers=backoff_sleep_seconds_if_no_headers,
+        max_backoff_attempts=max_backoff_attempts,
+        logger=logger,
+    )
 
 
 ### Authentication
