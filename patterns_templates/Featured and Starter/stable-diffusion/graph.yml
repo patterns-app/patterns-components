@@ -1,0 +1,45 @@
+description_file: readme.md
+functions:
+- chart_input: results
+  display:
+    height: 3
+    width: 4
+    x: 9
+    y: 4
+  id: 7q3dthf4
+  node_file: result.json
+- display:
+    x: 7
+    y: 4
+  id: f6rhxudd
+  inputs:
+    jobs: jobs
+  node_file: polling.py
+  parameter_values:
+    replicate_auth_token: ${{ replicate_auth_token }}
+- display:
+    height: 2
+    style: form
+    width: 2
+    x: 4
+    y: 4
+  id: lome3mk4
+  node_file: stable_diffusion.py
+  outputs:
+    results: jobs
+  parameter_values:
+    prompt: South Park in real life
+    replicate_auth_token: ${{ replicate_auth_token }}
+  title: Stable Diffusion
+stores:
+- display:
+    x: 6
+    y: 4
+  id: 7xcr7dd4
+  table: jobs
+- display:
+    x: 8
+    y: 4
+  id: rgvjzl5d
+  table: results
+title: Stable Diffusion
