@@ -2,10 +2,10 @@ description_file: readme.md
 functions:
 - chart_input: results
   display:
-    height: 3
-    width: 4
+    height: 5
+    width: 6
     x: 9
-    y: 4
+    y: 2
   id: 7q3dthf4
   node_file: result.json
 - display:
@@ -18,17 +18,19 @@ functions:
   parameter_values:
     replicate_auth_token: ${{ replicate_auth_token }}
 - display:
-    height: 2
+    height: 5
     style: form
-    width: 2
-    x: 4
-    y: 4
+    width: 3
+    x: 3
+    y: 2
   id: lome3mk4
   node_file: stable_diffusion.py
   outputs:
     results: jobs
   parameter_values:
-    prompt: South Park in real life
+    1. prompt: A yakitori grill in a small Tokyo alley
+    model_version: db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf
+    prompt: an astronaut riding a horse on mars, hd, dramatic lighting
     replicate_auth_token: ${{ replicate_auth_token }}
   title: Stable Diffusion
 stores:

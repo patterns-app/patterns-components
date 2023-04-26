@@ -3,7 +3,6 @@ from patterns import Parameter, Table
 import requests
 import time
 
-
 replicate_token = Parameter("replicate_auth_token")
 
 jobs = Table("jobs")
