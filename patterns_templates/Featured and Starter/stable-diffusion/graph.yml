@@ -28,9 +28,10 @@ functions:
   outputs:
     results: jobs
   parameter_values:
-    1. prompt: A yakitori grill in a small Tokyo alley
+    1. prompt: A yakitori in a small Tokyo alley
+    3. num_inference_steps: '20'
+    5. scheduler: K_EULER
     model_version: db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf
-    prompt: an astronaut riding a horse on mars, hd, dramatic lighting
     replicate_auth_token: ${{ replicate_auth_token }}
   title: Stable Diffusion
 stores:

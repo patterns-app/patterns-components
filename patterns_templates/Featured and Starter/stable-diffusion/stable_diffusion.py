@@ -4,9 +4,9 @@ import requests
 
 replicate_token = Parameter("replicate_auth_token", description="Paste in your Replicate token: https://replicate.com/account")
 
-prompt = Parameter('1. prompt', default='an astronaut riding a horse on mars, hd, dramatic lighting', description="Input prompt")
-negative_prompt = Parameter('2. negative_prompt', default='', description="Specify things to not see in the output")
-num_inference_steps = Parameter('3. num_inference_steps', default=50, type=int, description='Number of denoising steps (minimum: 1; maximum: 500)')
+prompt = Parameter('1. prompt', type=str, default='A yakitori in a small Tokyo alley', description="Input prompt")
+negative_prompt = Parameter('2. negative_prompt', type=str, default='', description="Specify things to not see in the output")
+num_inference_steps = Parameter('3. num_inference_steps', default=20, type=int, description='Number of denoising steps (minimum: 1; maximum: 500)')
 guidance_scale = Parameter('4. guidance_scale', default=7.5, type=float, description='Scale for classifier-free guidance (minimum: 1; maximum: 20)')
 scheduler = Parameter('5. scheduler', default='K_EULER', description='Choose a scheduler')
 seed = Parameter('6. seed', type=int, default=None, description='Random seed. Leave blank to randomize the seed')
