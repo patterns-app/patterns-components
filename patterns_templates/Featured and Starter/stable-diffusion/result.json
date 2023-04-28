@@ -1,0 +1,6 @@
+{
+  "mark": "image",
+  "encoding": {
+    "url": {"field": "result", "type": "nominal"}
+  }
+}
